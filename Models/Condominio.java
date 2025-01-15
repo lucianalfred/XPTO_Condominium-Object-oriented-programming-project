@@ -11,21 +11,38 @@ public class Condominio {
     private double totalDispesasGerais;
     private LocalDate dataConstrucaoa;
     private ArrayList<Fraccao> fraccoes;
+    private double areaTotal;
+    private double areaOcupada;
+    private double areaDisponivel;
     
+    //Metodos gerais
+    private double calcularPercentagem(double area){
+        return ((100 * area)/areaTotal);
+    }
+    
+    public boolean adicionarFraccao(Fraccao fraccao){
+        if(fraccao.getPercentagemArea() > calcularPercentagem(areaDisponivel)){
+            return false;
+        }
+        
+        return true;
+    }
     //Constructor
 
-    public Condominio(String identifcador, String morada, double totalDispesasGerais, LocalDate dataConstrucaoa, ArrayList<Fraccao> fraccoes) {
+    public Condominio(String identifcador,double areaTotal, String morada, double totalDispesasGerais, LocalDate dataConstrucaoa, ArrayList<Fraccao> fraccoes) {
         this.identifcador = identifcador;
         this.morada = morada;
         this.totalDispesasGerais = totalDispesasGerais;
         this.dataConstrucaoa = dataConstrucaoa;
         this.fraccoes = fraccoes;
+        this.areaTotal = areaTotal;
     }
     
     
     
     //get and setters
 
+    
     public String getIdentifcador() {
         return identifcador;
     }
@@ -64,6 +81,14 @@ public class Condominio {
 
     public void setFraccoes(ArrayList<Fraccao> fraccoes) {
         this.fraccoes = fraccoes;
+    }
+
+    public double getAreaTotal() {
+        return areaTotal;
+    }
+
+    public void setAreaTotal(double areaTotal) {
+        this.areaTotal = areaTotal;
     }
     
 }

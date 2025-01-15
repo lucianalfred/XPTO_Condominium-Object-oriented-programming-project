@@ -1,13 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
-/**
- *
- * @author lucian
- */
+
 public class Arrecadacao extends Fraccao {
+    private boolean possuiPortaBlindada;
     
+    
+    //constructor
+    public Arrecadacao(boolean possuiPortaBlindada, String identificador, double area, String localizacao, Proprietario proprietario) {    
+        super(identificador, area, localizacao, proprietario);
+        this.possuiPortaBlindada = possuiPortaBlindada;
+    }
+    
+    //getters and setters
+    public boolean isPossuiPortaBlindada() {
+        return possuiPortaBlindada;
+    }
+
+    public void setPossuiPortaBlindada(boolean possuiPortaBlindada) {
+        this.possuiPortaBlindada = possuiPortaBlindada;
+    }
+    
+    //outros metodos
 }
