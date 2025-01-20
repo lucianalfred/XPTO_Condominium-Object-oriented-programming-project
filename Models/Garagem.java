@@ -13,7 +13,7 @@ public class Garagem extends Fraccao {
     private boolean possuiServicoLavagem;
 
     // constructor
-    public Garagem(int capacidadeViaturas, boolean possuiServicoLavagem, String identificador, double area, String localizacao, Proprietario proprietario) {    
+    public Garagem(int capacidadeViaturas, boolean possuiServicoLavagem,int identificador, double area, String localizacao, Proprietario proprietario) {    
         super(identificador, area, localizacao, proprietario);
         this.capacidadeViaturas = capacidadeViaturas;
         this.possuiServicoLavagem = possuiServicoLavagem;

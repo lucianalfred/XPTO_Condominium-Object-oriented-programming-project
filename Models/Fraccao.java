@@ -2,16 +2,16 @@
 package Models;
 
 
-public  abstract class Fraccao {
+public abstract class Fraccao {
    
-    private String identificador;
+    private int identificador;
     private double area;
     private double percentagemArea;
     private String localizacao;
     private Proprietario proprietario;
   
     //constructor
-    public Fraccao(String identificador, double area, String localizacao, Proprietario proprietario) {
+    public Fraccao(int identificador, double area, String localizacao, Proprietario proprietario) {
         this.identificador = identificador;
         this.area = area;
         this.localizacao = localizacao;
@@ -19,11 +19,11 @@ public  abstract class Fraccao {
     }
     
     //get and setters
-    public String getIdentificador() {
+    public int getIdentificador() {
         return identificador;
     }
     
-    public void setIdentificador(String identificador) {
+    public void setIdentificador(int identificador) {
         this.identificador = identificador;
     }
 

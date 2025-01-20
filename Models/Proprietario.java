@@ -4,7 +4,7 @@ package Models;
 import java.time.LocalDate;
 
 public class Proprietario {
-   private String identificador;
+   private int identificador;
    private String nome;
    private String morada;
    private String telefone;
@@ -13,7 +13,7 @@ public class Proprietario {
    
    //Constructor
 
-    public Proprietario(String identificador, String nome, String morada, String telefone, String email, LocalDate dataNascimento) {
+    public Proprietario(int identificador, String nome, String morada, String telefone, String email, LocalDate dataNascimento) {
         this.identificador = identificador;
         this.nome = nome;
         this.morada = morada;
@@ -24,11 +24,11 @@ public class Proprietario {
    
    //Setters and Getters
 
-    public String getIdentificador() {
+    public int getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(String identificador) {
+    public void setIdentificador(int identificador) {
         this.identificador = identificador;
     }
 

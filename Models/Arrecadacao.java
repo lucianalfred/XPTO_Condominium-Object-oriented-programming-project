@@ -6,11 +6,11 @@ public class Arrecadacao extends Fraccao {
     
     
     //constructor
-    public Arrecadacao(boolean possuiPortaBlindada, String identificador, double area, String localizacao, Proprietario proprietario) {    
+    public Arrecadacao(boolean possuiPortaBlindada, int identificador, double area, String localizacao, Proprietario proprietario) {
         super(identificador, area, localizacao, proprietario);
         this.possuiPortaBlindada = possuiPortaBlindada;
     }
-    
+
     //getters and setters
     public boolean isPossuiPortaBlindada() {
         return possuiPortaBlindada;
