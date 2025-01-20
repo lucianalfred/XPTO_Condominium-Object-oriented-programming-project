@@ -1,13 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Controllers;
 
-/**
- *
- * @author lucian
- */
+package Controllers;
+import Models.Condominio;
+
 public class GestorArquivo {
+    private String caminho;
+    
+    
+    //Constructor
+    public GestorArquivo(String caminho) {
+        this.caminho = caminho;
+    }
+
+    
+    //get and set
+    public String getCaminho() {
+        return caminho;
+    }
+
+    public void setCaminho(String caminho) {
+        this.caminho = caminho;
+    }
+    
+    //
+    public Condominio carregarDados(){
+        
+        return null;
+    }
+    
     
 }

@@ -8,7 +8,7 @@ package Main;
  *
  * @author lucian
  */
-public class PrinciapalCondominio {
+public class PrincipalCondominio {
 
     /**
      * @param args the command line arguments
