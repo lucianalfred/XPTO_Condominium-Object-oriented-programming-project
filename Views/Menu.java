@@ -19,7 +19,7 @@ public class Menu {
     }
 
     public static void menuAdmin() {
-
+        System.out.println("Menu Admin");
     }
 
     public static void menuCondominio() {
