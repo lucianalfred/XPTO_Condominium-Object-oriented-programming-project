@@ -2,15 +2,14 @@
 package Models;
 
 
-public class Fraccao {
+public  abstract class Fraccao {
+   
     private String identificador;
     private double area;
     private double percentagemArea;
     private String localizacao;
     private Proprietario proprietario;
-
-    
-    
+  
     //constructor
     public Fraccao(String identificador, double area, String localizacao, Proprietario proprietario) {
         this.identificador = identificador;

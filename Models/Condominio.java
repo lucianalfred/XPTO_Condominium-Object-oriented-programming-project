@@ -9,7 +9,7 @@ public class Condominio {
     private String identifcador;
     private String morada;
     private double totalDispesasGerais;
-    private LocalDate dataConstrucaoa;
+    private LocalDate dataConstrucao;
     private ArrayList<Fraccao> fraccoes;
     private double areaTotal;
     private double areaOcupada;
@@ -29,12 +29,12 @@ public class Condominio {
     }
     //Constructor
 
-    public Condominio(String identifcador,double areaTotal, String morada, double totalDispesasGerais, LocalDate dataConstrucaoa, ArrayList<Fraccao> fraccoes) {
+    public Condominio(String identifcador,double areaTotal, String morada, double totalDispesasGerais) {
         this.identifcador = identifcador;
         this.morada = morada;
         this.totalDispesasGerais = totalDispesasGerais;
-        this.dataConstrucaoa = dataConstrucaoa;
-        this.fraccoes = fraccoes;
+       // this.dataConstrucao = dataConstrucaoa;
+        this.fraccoes = new ArrayList();
         this.areaTotal = areaTotal;
     }
     
@@ -67,12 +67,12 @@ public class Condominio {
         this.totalDispesasGerais = totalDispesasGerais;
     }
 
-    public LocalDate getDataConstrucaoa() {
-        return dataConstrucaoa;
+    public LocalDate getDataConstrucao() {
+        return dataConstrucao;
     }
 
-    public void setDataConstrucaoa(LocalDate dataConstrucaoa) {
-        this.dataConstrucaoa = dataConstrucaoa;
+    public void setDataConstrucao(LocalDate dataConstrucao) {
+        this.dataConstrucao= dataConstrucao;
     }
 
     public ArrayList<Fraccao> getFraccoes() {
