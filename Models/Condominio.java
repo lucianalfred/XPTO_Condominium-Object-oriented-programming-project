@@ -11,25 +11,49 @@ public class Condominio {
     private double totalDespesaElevador;
     private LocalDate dataConstrucao;
     private ArrayList<Fraccao> fraccoes;
-    
     private double areaTotal;
     private double areaOcupada;
     private double areaDisponivel;
 
     //Metodos gerais
-    private double calcularPercentagem(double area) {
-        return ((100 * area) / areaTotal);
+
+    public void listarFraccao(){
+        for (Fraccao aux : fraccoes ){
+            System.out.println(aux.toString());
+        }
+    }
+    public double calcularQuotasMensais() {
+        double somaQuota= 0 ;
+        for (Fraccao aux : fraccoes) {
+            somaQuota +=aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador, areaTotal);
+        }
+        return somaQuota;
     }
 
-    public boolean adicionarFraccao(Fraccao fraccao) {
-        if (fraccao.getPercentagemArea() > calcularPercentagem(areaDisponivel)) {
-            return false;
+    @Override
+    public String toString() {
+        return "Condominio{" + "identifcador=" + identifcador + ", morada=" + morada + ", totalDispesasGerais=" + totalDispesasGerais + ", totalDespesaElevador=" + totalDespesaElevador + ", dataConstrucao=" + dataConstrucao + ", fraccoes=" + fraccoes + ", areaTotal=" + areaTotal + ", areaOcupada=" + areaOcupada + ", areaDisponivel=" + areaDisponivel + '}';
+    }
+    public boolean adicionarFraccao(Fraccao fraccao){
+        if ( fraccao.area <= this.areaDisponivel){
+            fraccoes.add(fraccao);
+            this.areaDisponivel -=fraccao.area;
+             this.areaOcupada +=fraccao.area;          
+            return true;
         }
-        return true;
+        return  false ;
+    }
+    public Proprietario procurarProprietario(int id){
+         for (Fraccao aux : fraccoes){
+             if (aux.proprietario.getIdentificador() == id){
+                 return aux.getProprietario();
+             }
+         }
+        return null;     
     }
 
     //Constructor
-    public Condominio(int identifcador, double areaTotal, String morada, double totalDispesasGerais,double totalDespesaElevador ,LocalDate dataConstrucao) {
+    public Condominio(int identifcador, double areaTotal, String morada, double totalDispesasGerais, double totalDespesaElevador, LocalDate dataConstrucao) {
         this.identifcador = identifcador;
         this.morada = morada;
         this.areaDisponivel = areaTotal;
@@ -38,6 +62,7 @@ public class Condominio {
         this.fraccoes = new ArrayList();
         this.areaTotal = areaTotal;
         this.totalDespesaElevador = totalDespesaElevador;
+        this.areaOcupada = 0;
     }
 
     //get and set
@@ -96,6 +121,13 @@ public class Condominio {
     public double getAreaDisponivel() {
         return areaDisponivel;
     }
-    
+
+    public double getTotalDespesaElevador() {
+        return totalDespesaElevador;
+    }
+
+    public void setTotalDespesaElevador(double totalDespesaElevador) {
+        this.totalDespesaElevador = totalDespesaElevador;
+    }
 
 }

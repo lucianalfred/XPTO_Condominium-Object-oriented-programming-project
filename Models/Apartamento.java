@@ -8,8 +8,8 @@ public class Apartamento extends Fraccao {
     protected boolean possuiTerraco;
 
     //constructor
-    public Apartamento(String tipoApartamento, int numCasasBanho, int numVarandas, boolean possuiTerraco, int identificador, double area, String localizacao, Proprietario proprietario) {
-        super(identificador, area, localizacao, proprietario);
+    public Apartamento(String tipoApartamento, int numCasasBanho, int numVarandas, boolean possuiTerraco,double area, String localizacao, Proprietario proprietario) {
+        super(area, localizacao, proprietario);
         this.tipoApartamento = tipoApartamento;
         this.numCasasBanho = numCasasBanho;
         this.numVarandas = numVarandas;

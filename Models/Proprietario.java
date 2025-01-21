@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Proprietario {
 
-    private int identificador;
+    private static int identificador = 0;
     private String nome;
     private String morada;
     private String telefone;
@@ -12,14 +12,15 @@ public class Proprietario {
     private LocalDate dataNascimento;
 
     //Constructor
-    public Proprietario(int identificador, String nome, String morada, String telefone, String email, LocalDate dataNascimento) {
-        this.identificador = identificador;
+    public Proprietario(String nome, String morada, String telefone, String email, LocalDate dataNascimento) {
+        this.identificador = this.identificador++ ;
         this.nome = nome;
         this.morada = morada;
         this.telefone = telefone;
         this.email = email;
         this.dataNascimento = dataNascimento;
     }
+    
 
     //Setters and Getters
     public int getIdentificador() {

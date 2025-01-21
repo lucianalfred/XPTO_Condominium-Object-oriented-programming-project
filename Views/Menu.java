@@ -24,7 +24,7 @@ public class Menu {
 
     public static void menuCondominio() {
         System.out.println(" Menu Condomínio ");
-        System.out.println(" 4 - Inserir Dados do Condominio ");
+        System.out.println(" 4 - Alterar Dados do Condominio ");
         System.out.println(" 1 - Ver e Alterar a Despesa Geral e do Elevador  ");
         System.out.println(" 2 - Calcular a soma das Quotais Mensais ");
         System.out.println(" 3 - Listar as fraccoes que compoem o condominio ");
