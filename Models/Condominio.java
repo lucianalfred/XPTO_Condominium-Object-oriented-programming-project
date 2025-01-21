@@ -11,6 +11,7 @@ public class Condominio {
     private double totalDespesaElevador;
     private LocalDate dataConstrucao;
     private ArrayList<Fraccao> fraccoes;
+    
     private double areaTotal;
     private double areaOcupada;
     private double areaDisponivel;

@@ -17,6 +17,9 @@ public class PrincipalCondominio {
         Scanner input = new Scanner(System.in);
         boolean flag = true;
         int op, opCondominio, opFraccao, opTipoFraccao;
+        
+        Condominio condominio = new Condominio (1,25000,"Luanda",12000, 1200, LocalDate.parse("2025/11/11"));
+        
         try {
 
             do {
@@ -50,6 +53,8 @@ public class PrincipalCondominio {
                                             System.out.println(" 3 - Listar as fraccoes que compoem o condominio ");
                                             break;
                                         case 4:
+                                            System.out.println(condominio);
+                                            
                                             System.out.println(" Inserir Dados Do Condominio ");
                                             System.out.print("Digite a morada do Condominio: ");
                                             String moradaCondominio = input.next();
@@ -64,7 +69,9 @@ public class PrincipalCondominio {
                                             LocalDate data = LocalDate.parse(dataConstrucao);
                                             System.out.println("Data :" + data);
                                             // int identifcador, double areaTotal, String morada, double totalDispesasGerais,LocalDate dataConstrucao
-                                            Condominio condominio = new Condominio (1,areaTotalCondominio,moradaCondominio,despesaGeralCondominio, despesaElevadorCondominio,data);
+                                            condominio.setMorada(moradaCondominio);
+                                            condominio.setTotalDispesasGerais(despesaGeralCondominio);
+                                            
                                             System.out.println(condominio);
                                             break;
                                         default:
