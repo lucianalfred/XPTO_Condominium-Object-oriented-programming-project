@@ -3,6 +3,8 @@ package Main;
 import Controllers.*;
 import Models.*;
 import Views.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class PrincipalCondominio {
@@ -14,7 +16,7 @@ public class PrincipalCondominio {
 
         Scanner input = new Scanner(System.in);
         boolean flag = true;
-        int op, opCondominio, opFraccao;
+        int op, opCondominio, opFraccao, opTipoFraccao;
         try {
 
             do {
@@ -35,6 +37,9 @@ public class PrincipalCondominio {
                                     Menu.menuCondominio();
                                     opCondominio = input.nextInt();
                                     switch (opCondominio) {
+                                        case 0:
+                                            System.out.println(" 0 - Sair ");
+                                            break;
                                         case 1:
                                             System.out.println(" 1 - Ver e Alterar a Despesa Geral e do Elevador  ");
                                             break;
@@ -44,8 +49,23 @@ public class PrincipalCondominio {
                                         case 3:
                                             System.out.println(" 3 - Listar as fraccoes que compoem o condominio ");
                                             break;
-                                        case 0:
-                                            System.out.println(" 0 - Sair ");
+                                        case 4:
+                                            System.out.println(" Inserir Dados Do Condominio ");
+                                            System.out.print("Digite a morada do Condominio: ");
+                                            String moradaCondominio = input.next();
+                                            System.out.print("Digite a Despesa Geral ");
+                                            double despesaGeralCondominio = input.nextDouble();
+                                            System.out.print("Digite a Despesa do Elevador  ");
+                                            double despesaElevadorCondominio = input.nextDouble();
+                                            System.out.print("A area Total do Condominio :");
+                                            double areaTotalCondominio = input.nextDouble();
+                                            System.out.print("Digite a data de Construção yyyy-MM-dd :");
+                                            String dataConstrucao = input.next();
+                                            LocalDate data = LocalDate.parse(dataConstrucao);
+                                            System.out.println("Data :" + data);
+                                            // int identifcador, double areaTotal, String morada, double totalDispesasGerais,LocalDate dataConstrucao
+                                            Condominio condominio = new Condominio (1,areaTotalCondominio,moradaCondominio,despesaGeralCondominio, despesaElevadorCondominio,data);
+                                            System.out.println(condominio);
                                             break;
                                         default:
                                             System.out.println(" Opção Inválida ");
@@ -61,6 +81,29 @@ public class PrincipalCondominio {
                                     switch (opFraccao) {
                                         case 1:
                                             System.out.println("1 - Inserir Fraccao ");
+                                            do {
+                                                Menu.menuTipoFraccao();
+                                                opTipoFraccao = input.nextInt();
+                                                switch (opTipoFraccao) {
+                                                    case 0:
+                                                        System.out.println(" Sair ");
+                                                        break;
+                                                    case 1:
+                                                        System.out.println(" 1 - Apartamento ");
+                                                        break;
+                                                    case 2:
+                                                        System.out.println(" 2 -  Garagens ");
+                                                        break;
+                                                    case 3:
+                                                        System.out.println(" 3 - Arrecadação ");
+                                                        break;
+                                                    case 4:
+                                                        System.out.println(" 4  - Loja ");
+                                                        break;
+                                                    default:
+                                                        break;
+                                                }
+                                            } while (opTipoFraccao != 0);
                                             break;
                                         case 2:
                                             System.out.println("2 - Remover Fraccao ");

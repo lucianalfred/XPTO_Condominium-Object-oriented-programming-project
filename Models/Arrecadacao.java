@@ -1,10 +1,9 @@
 package Models;
 
-
 public class Arrecadacao extends Fraccao {
-    private boolean possuiPortaBlindada;
-    
-    
+
+    protected boolean possuiPortaBlindada;
+
     //constructor
     public Arrecadacao(boolean possuiPortaBlindada, int identificador, double area, String localizacao, Proprietario proprietario) {
         super(identificador, area, localizacao, proprietario);
@@ -19,6 +18,6 @@ public class Arrecadacao extends Fraccao {
     public void setPossuiPortaBlindada(boolean possuiPortaBlindada) {
         this.possuiPortaBlindada = possuiPortaBlindada;
     }
-    
+
     //outros metodos
 }

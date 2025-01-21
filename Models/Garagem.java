@@ -9,8 +9,8 @@ package Models;
  * @author lucian
  */
 public class Garagem extends Fraccao {
-    private int capacidadeViaturas;
-    private boolean possuiServicoLavagem;
+    protected int capacidadeViaturas;
+    protected boolean possuiServicoLavagem;
 
     // constructor
     public Garagem(int capacidadeViaturas, boolean possuiServicoLavagem,int identificador, double area, String localizacao, Proprietario proprietario) {    

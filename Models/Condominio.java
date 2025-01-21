@@ -1,53 +1,50 @@
-
 package Models;
 
 import java.util.*;
 import java.time.LocalDate;
 
 public class Condominio {
-    
-    private String identifcador;
+
+    private int identifcador;
     private String morada;
     private double totalDispesasGerais;
+    private double totalDespesaElevador;
     private LocalDate dataConstrucao;
     private ArrayList<Fraccao> fraccoes;
     private double areaTotal;
     private double areaOcupada;
     private double areaDisponivel;
-    
+
     //Metodos gerais
-    private double calcularPercentagem(double area){
-        return ((100 * area)/areaTotal);
+    private double calcularPercentagem(double area) {
+        return ((100 * area) / areaTotal);
     }
-    
-    public boolean adicionarFraccao(Fraccao fraccao){
-        if(fraccao.getPercentagemArea() > calcularPercentagem(areaDisponivel)){
+
+    public boolean adicionarFraccao(Fraccao fraccao) {
+        if (fraccao.getPercentagemArea() > calcularPercentagem(areaDisponivel)) {
             return false;
         }
-        
         return true;
     }
-    //Constructor
 
-    public Condominio(String identifcador,double areaTotal, String morada, double totalDispesasGerais) {
+    //Constructor
+    public Condominio(int identifcador, double areaTotal, String morada, double totalDispesasGerais,double totalDespesaElevador ,LocalDate dataConstrucao) {
         this.identifcador = identifcador;
         this.morada = morada;
+        this.areaDisponivel = areaTotal;
         this.totalDispesasGerais = totalDispesasGerais;
-       // this.dataConstrucao = dataConstrucaoa;
+        this.dataConstrucao = dataConstrucao;
         this.fraccoes = new ArrayList();
         this.areaTotal = areaTotal;
+        this.totalDespesaElevador = totalDespesaElevador;
     }
-    
-    
-    
-    //get and setters
 
-    
-    public String getIdentifcador() {
+    //get and set
+    public int getIdentifcador() {
         return identifcador;
     }
 
-    public void setIdentifcador(String identifcador) {
+    public void setIdentifcador(int identifcador) {
         this.identifcador = identifcador;
     }
 
@@ -72,7 +69,7 @@ public class Condominio {
     }
 
     public void setDataConstrucao(LocalDate dataConstrucao) {
-        this.dataConstrucao= dataConstrucao;
+        this.dataConstrucao = dataConstrucao;
     }
 
     public ArrayList<Fraccao> getFraccoes() {
@@ -90,5 +87,14 @@ public class Condominio {
     public void setAreaTotal(double areaTotal) {
         this.areaTotal = areaTotal;
     }
+
+    public double getAreaOcupada() {
+        return areaOcupada;
+    }
+
+    public double getAreaDisponivel() {
+        return areaDisponivel;
+    }
     
+
 }

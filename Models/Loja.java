@@ -10,10 +10,8 @@ package Models;
  */
 public class Loja extends Fraccao {
 
+    // Constructor 
     public Loja(int identificador, double area, String localizacao, Proprietario proprietario) {
         super(identificador, area, localizacao, proprietario);
     }
-
-   
-
 }

@@ -1,15 +1,14 @@
 package Models;
 
-
 public class Apartamento extends Fraccao {
-    private String tipoApartamento;
-    private int numCasasBanho;
-    private int numVarandas;
-    private boolean possuiTerraco;
-    
-    //constructor
 
-    public Apartamento(String tipoApartamento, int numCasasBanho, int numVarandas, boolean possuiTerraco,int identificador, double area, String localizacao, Proprietario proprietario) {
+    protected String tipoApartamento;
+    protected int numCasasBanho;
+    protected int numVarandas;
+    protected boolean possuiTerraco;
+
+    //constructor
+    public Apartamento(String tipoApartamento, int numCasasBanho, int numVarandas, boolean possuiTerraco, int identificador, double area, String localizacao, Proprietario proprietario) {
         super(identificador, area, localizacao, proprietario);
         this.tipoApartamento = tipoApartamento;
         this.numCasasBanho = numCasasBanho;
@@ -17,8 +16,6 @@ public class Apartamento extends Fraccao {
         this.possuiTerraco = possuiTerraco;
     }
 
-   
-    
     //getters and setters
     public String getTipoApartamento() {
         return tipoApartamento;
@@ -52,10 +49,5 @@ public class Apartamento extends Fraccao {
         this.possuiTerraco = possuiTerraco;
     }
 
-    
     //outros metodos
-
-    
-    
-    
 }

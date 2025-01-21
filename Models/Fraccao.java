@@ -1,15 +1,14 @@
-
 package Models;
 
-
 public abstract class Fraccao {
-   
-    private int identificador;
-    private double area;
-    private double percentagemArea;
-    private String localizacao;
-    private Proprietario proprietario;
-  
+
+    protected int identificador;
+    protected double area;
+    protected double percentagemArea;
+    protected String localizacao;
+    protected Proprietario proprietario;
+    protected Condominio condominio;
+
     //constructor
     public Fraccao(int identificador, double area, String localizacao, Proprietario proprietario) {
         this.identificador = identificador;
@@ -17,12 +16,19 @@ public abstract class Fraccao {
         this.localizacao = localizacao;
         this.proprietario = proprietario;
     }
-    
+    // analisar 
+    public  static boolean areaDisponivel(double area, Condominio condominio) {
+        if (condominio.getAreaDisponivel() <= area) {
+            return true;
+        }
+        return false;
+    }
+
     //get and setters
     public int getIdentificador() {
         return identificador;
     }
-    
+
     public void setIdentificador(int identificador) {
         this.identificador = identificador;
     }
@@ -50,10 +56,9 @@ public abstract class Fraccao {
     public void setProprietario(Proprietario proprietario) {
         this.proprietario = proprietario;
     }
-    
-    
+
     //Outros metodos
-    public double calcularQuotaMensal(double despesasGerais, double despesasElevadores){
+    public double calcularQuotaMensal(double despesasGerais, double despesasElevadores) {
         return 0.00;
     }
 
@@ -64,5 +69,5 @@ public abstract class Fraccao {
     public void setPercentagemArea(double percentagemArea) {
         this.percentagemArea = percentagemArea;
     }
-    
+
 }
