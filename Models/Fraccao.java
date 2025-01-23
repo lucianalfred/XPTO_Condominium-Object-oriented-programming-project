@@ -69,4 +69,13 @@ public abstract class Fraccao {
         this.percentagemArea = percentagemArea;
     }
 
+    public void mostarInformacoes(){
+        System.out.println("Id :"+this.getIdentificador());
+        System.out.println(" Area:"+this.getArea());
+        System.out.println("Percentagem da Area :"+this.getPercentagemArea());
+        System.out.println("Localização :"+this.getLocalizacao());
+        System.out.println("Id Proprietario :"+this.getProprietario().getIdentificador());
+        System.out.println("Nome Proprietario :"+this.getProprietario().getNome());
+        System.out.println(" Email Proprietario :"+this.getProprietario().getEmail());
+    }
 }

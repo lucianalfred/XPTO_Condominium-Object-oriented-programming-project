@@ -97,94 +97,176 @@ public class PrincipalCondominio {
                                     switch (opFraccao) {
                                         case 1:
                                             System.out.println("1 - Inserir Fraccao ");
-                                            do {
-                                                System.out.println(" O proprietario Já possui alguma fracção do Condominio?! 1-Sim /0-Não ");
-                                                int temProprietario = input.nextInt();
-                                                if (temProprietario == 1) {
-                                                    System.out.println("Digite o Id do Proprietario :");
-                                                    int id = input.nextInt();
-                                                    proprietarioExistente = condominio.procurarProprietario(id);
-
-                                                    if (proprietarioExistente == null) {
-                                                        System.out.println("Proprietário Não Existe! Cadastra proprietario ");
-                                                        //String nome, String morada, String telefone, String email, LocalDate dataNascimento
-                                                        System.out.println(" Nome :");
-                                                        String nome = input.next();
-                                                        System.out.println("Morada :");
-                                                        String morada = input.next();
-                                                        System.out.println("Telefone :");
-                                                        String telefone = input.next();
-                                                        System.out.println(" Email :");
-                                                        String emailProprietario = input.next();
-                                                        System.out.println(" Digite a Date de Nascimento :");
-                                                        String dataNascimento = input.next();
-                                                        LocalDate data = LocalDate.parse(dataNascimento);
-                                                        proprietarioExistente = new Proprietario(nome, morada, telefone, emailProprietario, data);
-
-                                                    }
-
-                                                } else {
-                                                    System.out.println("Proprietário Não Existe! Cadastra proprietario ");
-                                                    //String nome, String morada, String telefone, String email, LocalDate dataNascimento
-                                                    System.out.println(" Nome :");
+                                            System.out.println(" O proprietario Já possui alguma fracção do Condominio?! 1-Sim /0-Não ");
+                                            int temProprietario = input.nextInt();
+                                            if (temProprietario == 1) {
+                                                System.out.print("Digite o Id do Proprietario :");
+                                                int id = input.nextInt();
+                                                proprietarioExistente = condominio.procurarProprietario(id);
+                                                if (proprietarioExistente == null) {
+                                                    System.out.println("Proprietário Não Existe.. Cadastra proprietário ");
+                                                    System.out.print(" Nome :");
                                                     String nome = input.next();
-                                                    System.out.println("Morada :");
+                                                    System.out.print("Morada :");
                                                     String morada = input.next();
-                                                    System.out.println("Telefone :");
+                                                    System.out.print("Telefone :");
                                                     String telefone = input.next();
-                                                    System.out.println(" Email :");
+                                                    System.out.print(" Email :");
                                                     String emailProprietario = input.next();
-                                                    System.out.println(" Digite a Date de Nascimento :");
+                                                    System.out.print(" Digite a Date de Nascimento :");
                                                     String dataNascimento = input.next();
                                                     LocalDate data = LocalDate.parse(dataNascimento);
                                                     proprietarioExistente = new Proprietario(nome, morada, telefone, emailProprietario, data);
 
+                                                    System.out.println(" Digite os Dados da Fraccao ");
+                                                    System.out.print("Digite a area da Fracção :");
+                                                    double areafraccao = input.nextDouble();
+                                                    System.out.print("Digite a Localização :");
+                                                    String localizacao = input.next();
+                                                    Menu.menuTipoFraccao();
+                                                    opTipoFraccao = input.nextInt();
+                                                    switch (opTipoFraccao) {
+                                                        case 0:
+                                                            System.out.println(" Sair ");
+
+                                                            break;
+                                                        case 1:
+                                                            System.out.println(" 1 - Apartamento ");
+                                                            System.out.print(" Tipo apartamento :");
+                                                            String tipoApartamento = input.next();
+                                                            System.out.print("Numero de Casas De Banho :");
+                                                            int numBanheiro = input.nextInt();
+                                                            System.out.print("Numero Varandas :");
+                                                            int numVaranda = input.nextInt();
+                                                            System.out.print("Tem terraço ? sim-1/ não - 0");
+                                                            int temTerraco = input.nextInt();
+                                                            boolean terraco = true;
+                                                            if (temTerraco == 0) {
+                                                                terraco = false;
+                                                            }
+                                                            Apartamento apartamento = new Apartamento(tipoApartamento, numBanheiro, numVaranda, terraco, areafraccao, localizacao, proprietarioExistente);
+                                                            condominio.adicionarFraccao(apartamento);
+                                                            break;
+                                                        case 2:
+                                                            System.out.println(" 2 - Garagens ");
+                                                            System.out.println("Digite o Numero de Viatuaras :");
+                                                            int numViaturas = input.nextInt();
+                                                            System.out.println("Possui Serviço de Lavegem ?! 1-Sim / 0-Não ");
+                                                            int possuiLavagem =input.nextInt();
+                                                            boolean  lavagem = true;
+                                                            if (possuiLavagem == 0){
+                                                                lavagem = false;
+                                                            }
+                                                             // Garagem garagem = new Garagem();
+                                                            break;
+                                                        case 3:
+                                                            System.out.println(" 3 - Arrecadação ");
+                                                            break;
+                                                        case 4:
+                                                            System.out.println(" 4 - Loja ");
+                                                            break;
+                                                        default:
+                                                            break;
+                                                    }
+                                                } else {
+                                                    System.out.println(" Digite os Dados da Fraccao ");
+                                                    System.out.print("Digite a area da Fracção :");
+                                                    double areafraccao = input.nextDouble();
+                                                    System.out.print("Digite a Localização :");
+                                                    String localizacao = input.next();
+                                                    Menu.menuTipoFraccao();
+                                                    opTipoFraccao = input.nextInt();
+                                                    switch (opTipoFraccao) {
+                                                        case 0:
+
+                                                            break;
+                                                        case 1:
+                                                            System.out.println(" 1 - Apartamento ");
+                                                            System.out.print(" Tipo apartamento :");
+                                                            String tipoApartamento = input.next();
+                                                            System.out.print("Numero de Casas De Banho :");
+                                                            int numBanheiro = input.nextInt();
+                                                            System.out.print("Numero Varandas :");
+                                                            int numVaranda = input.nextInt();
+                                                            System.out.print("Tem terraço ? sim-1/ não - 0");
+                                                            int temTerraco = input.nextInt();
+                                                            boolean terraco = true;
+                                                            if (temTerraco == 0) {
+                                                                terraco = false;
+                                                            }
+                                                            Apartamento apartamento = new Apartamento(tipoApartamento, numBanheiro, numVaranda, terraco, areafraccao, localizacao, proprietarioExistente);
+                                                            condominio.adicionarFraccao(apartamento);
+                                                            break;
+                                                        case 2:
+                                                            System.out.println(" 2 - Garagens ");
+                                                            break;
+                                                        case 3:
+                                                            System.out.println(" 3 - Arrecadação ");
+                                                            break;
+                                                        case 4:
+                                                            System.out.println(" 4 - Loja ");
+                                                            break;
+                                                        default:
+                                                            break;
+                                                    }
                                                 }
+                                            } else {
+                                                System.out.println(" Cadastra proprietário ");
+                                                System.out.print(" Nome :");
+                                                String nome = input.next();
+                                                System.out.print("Morada :");
+                                                String morada = input.next();
+                                                System.out.print("Telefone :");
+                                                String telefone = input.next();
+                                                System.out.print(" Email :");
+                                                String emailProprietario = input.next();
+                                                System.out.print(" Digite a Date de Nascimento :");
+                                                String dataNascimento = input.next();
+                                                LocalDate data = LocalDate.parse(dataNascimento);
+                                                proprietarioExistente = new Proprietario(nome, morada, telefone, emailProprietario, data);
+
                                                 System.out.println(" Digite os Dados da Fraccao ");
                                                 System.out.print("Digite a area da Fracção :");
                                                 double areafraccao = input.nextDouble();
-                                                System.out.println("Digite a Localização :");
+                                                System.out.print("Digite a Localização :");
                                                 String localizacao = input.next();
 
                                                 Menu.menuTipoFraccao();
                                                 opTipoFraccao = input.nextInt();
                                                 switch (opTipoFraccao) {
                                                     case 0:
-                                                        System.out.println(" Sair ");
+
                                                         break;
                                                     case 1:
                                                         System.out.println(" 1 - Apartamento ");
-                                                        System.out.println(" Tipo apartamento :");
+                                                        System.out.print(" Tipo apartamento :");
                                                         String tipoApartamento = input.next();
-                                                        System.out.println("Numero de Casas De Banho :");
+                                                        System.out.print("Numero de Casas De Banho :");
                                                         int numBanheiro = input.nextInt();
-                                                        System.out.println("Numero Varandas :");
+                                                        System.out.print("Numero Varandas :");
                                                         int numVaranda = input.nextInt();
-                                                        System.out.println("Tem terraço ? sim-1/ não - 0");
+                                                        System.out.print("Tem terraço ? sim-1/ não - 0");
                                                         int temTerraco = input.nextInt();
                                                         boolean terraco = true;
                                                         if (temTerraco == 0) {
                                                             terraco = false;
                                                         }
-
                                                         Apartamento apartamento = new Apartamento(tipoApartamento, numBanheiro, numVaranda, terraco, areafraccao, localizacao, proprietarioExistente);
-
                                                         condominio.adicionarFraccao(apartamento);
-
                                                         break;
                                                     case 2:
-                                                        System.out.println(" 2 -  Garagens ");
+                                                        System.out.println(" 2 - Garagens ");
                                                         break;
                                                     case 3:
                                                         System.out.println(" 3 - Arrecadação ");
                                                         break;
                                                     case 4:
-                                                        System.out.println(" 4  - Loja ");
+                                                        System.out.println(" 4 - Loja ");
                                                         break;
                                                     default:
                                                         break;
                                                 }
-                                            } while (opTipoFraccao != 0);
+                                            }
                                             break;
                                         case 2:
                                             System.out.println("2 - Remover Fraccao ");
