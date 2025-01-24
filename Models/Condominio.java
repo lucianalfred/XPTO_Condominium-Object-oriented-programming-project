@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class Condominio {
 
-    private int identifcador;
+    private static int identifcador = 0;
     private String morada;
     private double totalDispesasGerais;
     private double totalDespesaElevador;
@@ -32,7 +32,7 @@ public class Condominio {
 
     @Override
     public String toString() {
-        return "Condominio{" + "identifcador=" + identifcador + ", morada=" + morada + ", totalDispesasGerais=" + totalDispesasGerais + ", totalDespesaElevador=" + totalDespesaElevador + ", dataConstrucao=" + dataConstrucao + ", fraccoes=" + fraccoes + ", areaTotal=" + areaTotal + ", areaOcupada=" + areaOcupada + ", areaDisponivel=" + areaDisponivel + '}';
+        return  identifcador+"," + morada+"," + totalDispesasGerais + "," + totalDespesaElevador +","+dataConstrucao+""+","+areaTotal + "," + areaOcupada + "," +areaDisponivel;
     }
     public boolean adicionarFraccao(Fraccao fraccao){
         if ( fraccao.area <= this.areaDisponivel){
@@ -51,10 +51,9 @@ public class Condominio {
          }
         return null;     
     }
-
     //Constructor
-    public Condominio(int identifcador, double areaTotal, String morada, double totalDispesasGerais, double totalDespesaElevador, LocalDate dataConstrucao) {
-        this.identifcador = identifcador;
+    public Condominio(double areaTotal, String morada, double totalDispesasGerais, double totalDespesaElevador, LocalDate dataConstrucao) {
+        this.identifcador = this.identifcador + 1;
         this.morada = morada;
         this.areaDisponivel = areaTotal;
         this.totalDispesasGerais = totalDispesasGerais;
@@ -64,10 +63,20 @@ public class Condominio {
         this.totalDespesaElevador = totalDespesaElevador;
         this.areaOcupada = 0;
     }
-
+    public Condominio(){
+        
+    }
     //get and set
     public int getIdentifcador() {
         return identifcador;
+    }
+
+    public void setAreaOcupada(double areaOcupada) {
+        this.areaOcupada = areaOcupada;
+    }
+
+    public void setAreaDisponivel(double areaDisponivel) {
+        this.areaDisponivel = areaDisponivel;
     }
 
     public void setIdentifcador(int identifcador) {

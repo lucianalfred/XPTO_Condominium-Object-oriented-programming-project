@@ -49,6 +49,12 @@ public abstract class Fraccao {
     public void setProprietario(Proprietario proprietario) {
         this.proprietario = proprietario;
     }
+    
+    
+    @Override 
+    public String toString(){
+        return identificador+","+area+","+percentagemArea+","+localizacao+","+proprietario.getIdentificador();
+    }
   
     //metodo que calcula a percentagem da area da fraccao em relacao a areaa total do condominio 
     public double calcularPercentagemArea(double areaTotalCondominio){

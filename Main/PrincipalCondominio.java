@@ -10,14 +10,11 @@ import java.util.*;
 public class PrincipalCondominio {
 
     public static void main(String[] args) {
-        ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
-        Usuario luciano = new Usuario("Luciano", "la@gmail.com", "1234");
-        listaUsuarios.add(luciano);
-
+        
         Scanner input = new Scanner(System.in);
         boolean flag = true;
         int op, opCondominio, opFraccao, opTipoFraccao;
-        Condominio condominio = new Condominio(1, 25000, "Luanda", 12000, 1200, LocalDate.parse("2025-11-11"));
+        Condominio condominio = new Condominio(25000, "Luanda", 12000, 1200, LocalDate.parse("2025-11-11"));
 
         try {
 
@@ -28,7 +25,7 @@ public class PrincipalCondominio {
                 System.out.print("Password: ");
                 String password = input.next();
 
-                if (Login.logar(listaUsuarios, email, password)) {
+                if (Login.logar(email, password)) {
                     do {
                         Menu.menuPrincipal();
                         op = input.nextInt();

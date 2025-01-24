@@ -13,6 +13,10 @@ public class Usuario {
         this.password = password;
     }
 
+    @Override 
+    public String toString(){
+        return nome+","+email+","+password;
+    }
     public String getNome() {
         return nome;
     }
