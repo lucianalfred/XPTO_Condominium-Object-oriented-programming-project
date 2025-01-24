@@ -16,16 +16,16 @@ public class Condominio {
     private double areaDisponivel;
 
     //Metodos gerais
-
-    public void listarFraccao(){
-        for (Fraccao aux : fraccoes ){
-            System.out.println(aux.toString());
+    public void listarFraccao() {
+        for (Fraccao aux : fraccoes) {
+            aux.mostarInformacoes();
         }
     }
+
     public double calcularQuotasMensais() {
-        double somaQuota= 0 ;
+        double somaQuota = 0;
         for (Fraccao aux : fraccoes) {
-            somaQuota +=aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador, areaTotal);
+            somaQuota += aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador, areaTotal);
         }
         return somaQuota;
     }
@@ -34,22 +34,24 @@ public class Condominio {
     public String toString() {
         return  identifcador+"," + morada+"," + totalDispesasGerais + "," + totalDespesaElevador +","+dataConstrucao+""+","+areaTotal + "," + areaOcupada + "," +areaDisponivel;
     }
-    public boolean adicionarFraccao(Fraccao fraccao){
-        if ( fraccao.area <= this.areaDisponivel){
+
+    public boolean adicionarFraccao(Fraccao fraccao) {
+        if (fraccao.area <= this.areaDisponivel) {
             fraccoes.add(fraccao);
-            this.areaDisponivel -=fraccao.area;
-             this.areaOcupada +=fraccao.area;          
+            this.areaDisponivel -= fraccao.area;
+            this.areaOcupada += fraccao.area;
             return true;
         }
-        return  false ;
+        return false;
     }
-    public Proprietario procurarProprietario(int id){
-         for (Fraccao aux : fraccoes){
-             if (aux.proprietario.getIdentificador() == id){
-                 return aux.getProprietario();
-             }
-         }
-        return null;     
+
+    public Proprietario procurarProprietario(int id) {
+        for (Fraccao aux : fraccoes) {
+            if (aux.proprietario.getIdentificador() == id) {
+                return aux.getProprietario();
+            }
+        }
+        return null;
     }
     //Constructor
     public Condominio(double areaTotal, String morada, double totalDispesasGerais, double totalDespesaElevador, LocalDate dataConstrucao) {
