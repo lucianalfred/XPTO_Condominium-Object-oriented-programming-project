@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Login {
     
+//login     
     public static boolean logar(String email, String pass){
         ArrayList<Usuario> usuarios =  GestorArquivo.listaDeUsuarios();
         for (Usuario usuario : usuarios) {
