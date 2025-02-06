@@ -14,8 +14,8 @@ public class PrincipalCondominio {
         Scanner input = new Scanner(System.in);
         boolean flag = true;
         int op, opCondominio, opFraccao, opTipoFraccao;
-        Condominio condominio = new Condominio(25000, "Luanda", 12000, 1200, LocalDate.parse("2025-11-11"));
-
+        //Condominio condominio = new Condominio(25000, "Luanda", 12000, 1200, LocalDate.parse("2025-11-11"));
+         Condominio condominio = new Condominio();
         try {
 
             do {

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Proprietario {
 
+   
     private static int identificador = 0;
     private String nome;
     private String morada;
@@ -13,7 +14,7 @@ public class Proprietario {
 
     //Constructor
     public Proprietario(String nome, String morada, String telefone, String email, LocalDate dataNascimento) {
-        this.identificador = this.identificador++ ;
+        this.identificador = this.identificador + 1;
         this.nome = nome;
         this.morada = morada;
         this.telefone = telefone;
@@ -21,6 +22,18 @@ public class Proprietario {
         this.dataNascimento = dataNascimento;
     }
     
+    public Proprietario(int identificador, String nome, String email) {
+        this.identificador = identificador;
+        this.nome = nome;
+        this.email = email;
+       
+    }
+    
+    
+    @Override
+    public String toString(){
+        return identificador+","+nome+","+morada+","+telefone+","+email+","+dataNascimento;
+    }
 
     //Setters and Getters
     public int getIdentificador() {

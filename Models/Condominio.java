@@ -2,6 +2,7 @@ package Models;
 
 import java.util.*;
 import java.time.LocalDate;
+import Controllers.*;
 
 public class Condominio {
 
@@ -16,43 +17,7 @@ public class Condominio {
     private double areaDisponivel;
 
     //Metodos gerais
-    public void listarFraccao() {
-        for (Fraccao aux : fraccoes) {
-            aux.mostarInformacoes();
-        }
-    }
-
-    public double calcularQuotasMensais() {
-        double somaQuota = 0;
-        for (Fraccao aux : fraccoes) {
-            somaQuota += aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador, areaTotal);
-        }
-        return somaQuota;
-    }
-
-    @Override
-    public String toString() {
-        return  identifcador+"," + morada+"," + totalDispesasGerais + "," + totalDespesaElevador +","+dataConstrucao+""+","+areaTotal + "," + areaOcupada + "," +areaDisponivel;
-    }
-
-    public boolean adicionarFraccao(Fraccao fraccao) {
-        if (fraccao.area <= this.areaDisponivel) {
-            fraccoes.add(fraccao);
-            this.areaDisponivel -= fraccao.area;
-            this.areaOcupada += fraccao.area;
-            return true;
-        }
-        return false;
-    }
-
-    public Proprietario procurarProprietario(int id) {
-        for (Fraccao aux : fraccoes) {
-            if (aux.proprietario.getIdentificador() == id) {
-                return aux.getProprietario();
-            }
-        }
-        return null;
-    }
+    
     //Constructor
     public Condominio(double areaTotal, String morada, double totalDispesasGerais, double totalDespesaElevador, LocalDate dataConstrucao) {
         this.identifcador = this.identifcador + 1;
@@ -140,5 +105,57 @@ public class Condominio {
     public void setTotalDespesaElevador(double totalDespesaElevador) {
         this.totalDespesaElevador = totalDespesaElevador;
     }
+    //
+    
+    public void listarFraccao() {
+        for (Fraccao aux : fraccoes) {
+            aux.mostarInformacoes();
+        }
+    }
 
+    public double calcularQuotasMensais() {
+        double somaQuota = 0;
+        for (Fraccao aux : fraccoes) {
+            somaQuota += aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador, areaTotal);
+        }
+        return somaQuota;
+    }
+
+    @Override
+    public String toString() {
+        return  identifcador+"," + morada+"," + totalDispesasGerais + "," + totalDespesaElevador +","+dataConstrucao+""+","+areaTotal + "," + areaOcupada + "," +areaDisponivel;
+    }
+
+    public boolean adicionarFraccao(Fraccao fraccao) {
+        if (fraccao.area <= this.areaDisponivel) {
+            fraccoes.add(fraccao);
+            this.areaDisponivel -= fraccao.area;
+            this.areaOcupada += fraccao.area;
+            return true;
+        }
+        return false;
+    }
+
+    public Proprietario procurarProprietario(int id) {
+        for (Fraccao aux : fraccoes) {
+            if (aux.proprietario.getIdentificador() == id) {
+                return aux.getProprietario();
+            }
+        }
+        return null;
+    }
+
+    public void mostrarInformacao(){
+        System.out.println("_________________________________________________");
+        System.out.println("Condominio: XPTO");
+        System.out.println("Morada: "+morada);
+        System.out.println("Total Despesas Gerais: "+totalDispesasGerais);
+        System.out.println("Total Despesas Elevador: "+totalDespesaElevador);
+        System.out.println("Data De Construcao: "+dataConstrucao.toString());
+        System.out.println("Area Total: "+areaTotal);
+        System.out.println("Area Ocupada: "+areaOcupada);
+        System.out.println("Area Disponivel: "+areaDisponivel);
+        System.out.println("_________________________________________________");
+        
+    }
 }
