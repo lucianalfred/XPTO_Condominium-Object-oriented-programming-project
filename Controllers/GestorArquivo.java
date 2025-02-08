@@ -25,6 +25,7 @@ public class GestorArquivo {
     public static void guardarDadosDoCondomio(Condominio condominio) {
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(ARQUIVO_DADOS_D0_CONDOMINIO))) {
             escritor.write(condominio.toString());
+            //guardarFracoes(condominio);
         } catch (IOException e) {
             System.err.print("Erro ao guardar dados do condominio: " + e.getMessage());
         }
@@ -56,6 +57,9 @@ public class GestorArquivo {
             condominio.setAreaOcupada(areaTotal);
             condominio.setAreaDisponivel(areaTotal);
 
+            //carregar fraccoes
+            //loadFracoes(condominio);
+            
         } catch (IOException e) {
             System.err.print("Erro ao ler arquivo de dados do condominio: " + e.getMessage());
         }
@@ -143,7 +147,7 @@ public class GestorArquivo {
         }
     }
 
-    public void guardarFracoes(Condominio condominio){
+    private static void guardarFracoes(Condominio condominio){
         
         try{
             //lista  de fracoes 
@@ -176,7 +180,7 @@ public class GestorArquivo {
         }
     }
     
-    public static void loadFracoes(Condominio condominio) {
+    public  static void loadFracoes(Condominio condominio) {
         try {
             // Carregar Apartamentos
             try (BufferedReader leitorApartamentos = new BufferedReader(new FileReader(ARQUIVO_APARTAMENTOS))) {
@@ -192,7 +196,7 @@ public class GestorArquivo {
                         int numCasasBanho = Integer.parseInt(dados[6]);
                         int numVarandas = Integer.parseInt(dados[7]);
                         boolean possuiTerraco = Boolean.parseBoolean(dados[8]);
-                        Apartamento apartamento = new Apartamento(tipoApartamento, numCasasBanho, numVarandas, possuiTerraco, area, localizacao, proprietario);
+                        Apartamento apartamento = new Apartamento(tipoApartamento, numCasasBanho, numVarandas, possuiTerraco, area, localizacao, proprietario,condominio);
                         condominio.adicionarFraccao(apartamento);
                     }
                 }
@@ -209,8 +213,8 @@ public class GestorArquivo {
                     Proprietario proprietario = condominio.procurarProprietario(idProprietario);
                     if (proprietario != null) {
                         boolean possuiPortaBlindada = Boolean.parseBoolean(dados[5]);
-                        Arrecadacao arrecadacao = new Arrecadacao(possuiPortaBlindada, 0, area, localizacao, proprietario);
-                        condominio.adicionarFraccao(arrecadacao);
+                      //  Arrecadacao arrecadacao = new Arrecadacao(possuiPortaBlindada, 0, area, localizacao, proprietario);
+                       // condominio.adicionarFraccao(arrecadacao);
                     }
                 }
             }
@@ -225,7 +229,7 @@ public class GestorArquivo {
                     int idProprietario = Integer.parseInt(dados[4]);
                     Proprietario proprietario = condominio.procurarProprietario(idProprietario);
                     if (proprietario != null) {
-                        Loja loja = new Loja(area, localizacao, proprietario);
+                        Loja loja = new Loja(area, localizacao, proprietario,condominio);
                         condominio.adicionarFraccao(loja);
                     }
                 }

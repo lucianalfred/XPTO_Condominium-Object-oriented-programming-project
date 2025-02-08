@@ -17,7 +17,6 @@ public class Condominio {
     private double areaDisponivel;
 
     //Metodos gerais
-    
     //Constructor
     public Condominio(double areaTotal, String morada, double totalDispesasGerais, double totalDespesaElevador, LocalDate dataConstrucao) {
         this.identifcador = this.identifcador + 1;
@@ -25,14 +24,16 @@ public class Condominio {
         this.areaDisponivel = areaTotal;
         this.totalDispesasGerais = totalDispesasGerais;
         this.dataConstrucao = dataConstrucao;
-        this.fraccoes = new ArrayList();
+        this.fraccoes = new ArrayList<Fraccao>();
         this.areaTotal = areaTotal;
         this.totalDespesaElevador = totalDespesaElevador;
         this.areaOcupada = 0;
     }
-    public Condominio(){
-        
+
+    public Condominio() {
+
     }
+
     //get and set
     public int getIdentifcador() {
         return identifcador;
@@ -106,24 +107,45 @@ public class Condominio {
         this.totalDespesaElevador = totalDespesaElevador;
     }
     //
-    
+
     public void listarFraccao() {
-        for (Fraccao aux : fraccoes) {
-            aux.mostarInformacoes();
+        // this.fraccoes = new Arra
+        if (fraccoes.size() == 0) {
+            System.out.println(" Não Há Fraccoes No Condominio");
+        } else {
+            for (Fraccao aux : fraccoes) {
+                aux.mostarInformacoes();
+            }
         }
     }
-
+    public boolean removerFraccao(Fraccao frac){
+        return fraccoes.remove(frac);
+    }
+    public void verificarSomasDasPercentagens(){
+        double soma = 0;
+        if (fraccoes.size() != 0) {
+            for (Fraccao aux : fraccoes) {
+                soma += aux.percentagemArea;
+            }
+            System.out.println("Percentagem das Frações: "+soma+"%");
+        }else{
+            System.out.println("Não há frações!");
+        }
+        
+    }
     public double calcularQuotasMensais() {
         double somaQuota = 0;
-        for (Fraccao aux : fraccoes) {
-            somaQuota += aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador, areaTotal);
+        if (fraccoes.size() != 0) {
+            for (Fraccao aux : fraccoes) {
+                somaQuota += aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador, areaTotal);
+            }
         }
         return somaQuota;
     }
 
     @Override
     public String toString() {
-        return  identifcador+"," + morada+"," + totalDispesasGerais + "," + totalDespesaElevador +","+dataConstrucao+""+","+areaTotal + "," + areaOcupada + "," +areaDisponivel;
+        return identifcador + "," + morada + "," + totalDispesasGerais + "," + totalDespesaElevador + "," + dataConstrucao + "" + "," + areaTotal + "," + areaOcupada + "," + areaDisponivel;
     }
 
     public boolean adicionarFraccao(Fraccao fraccao) {
@@ -145,17 +167,18 @@ public class Condominio {
         return null;
     }
 
-    public void mostrarInformacao(){
+    public void mostrarInformacao() {
         System.out.println("_________________________________________________");
         System.out.println("Condominio: XPTO");
-        System.out.println("Morada: "+morada);
-        System.out.println("Total Despesas Gerais: "+totalDispesasGerais);
-        System.out.println("Total Despesas Elevador: "+totalDespesaElevador);
-        System.out.println("Data De Construcao: "+dataConstrucao.toString());
-        System.out.println("Area Total: "+areaTotal);
-        System.out.println("Area Ocupada: "+areaOcupada);
-        System.out.println("Area Disponivel: "+areaDisponivel);
+        System.out.println("Morada: " + morada);
+        System.out.println("Total Despesas Gerais: " + totalDispesasGerais);
+        System.out.println("Total Despesas Elevador: " + totalDespesaElevador);
+        System.out.println("Data De Construcao: " + dataConstrucao.toString());
+        System.out.println("Area Total: " + areaTotal);
+        System.out.println("Area Ocupada: " + areaOcupada);
+        System.out.println("Area Disponivel: " + areaDisponivel);
+        System.out.println("Percentagem Disponivel: " + ((areaDisponivel * 100)/areaTotal)+"%");
         System.out.println("_________________________________________________");
-        
+
     }
 }

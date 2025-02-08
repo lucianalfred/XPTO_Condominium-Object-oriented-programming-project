@@ -11,7 +11,7 @@ package Models;
 public class Loja extends Fraccao {
 
     // Constructor 
-    public Loja(double area, String localizacao, Proprietario proprietario) {
-        super(area, localizacao, proprietario);
+    public Loja(double area, String localizacao, Proprietario proprietario, Condominio cond) {
+        super(area, localizacao, proprietario, cond);
     }
 }
