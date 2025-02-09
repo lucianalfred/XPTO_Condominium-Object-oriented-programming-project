@@ -113,9 +113,11 @@ public class Condominio {
         if (fraccoes.size() == 0) {
             System.out.println(" Não Há Fraccoes No Condominio");
         } else {
+            System.out.println("--------------------------------------------------------------");
             for (Fraccao aux : fraccoes) {
                 aux.mostarInformacoes();
             }
+            
         }
     }
     public boolean removerFraccao(Fraccao frac){

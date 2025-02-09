@@ -90,6 +90,7 @@ public abstract class Fraccao {
     }
 
     public void mostarInformacoes(){
+        System.out.println("-----------------------------------------------------------------------------");
         System.out.println("Id :"+this.getIdentificador());
         System.out.println("Area:"+this.getArea());
         System.out.println("Percentagem da Area :"+this.percentagemArea+"%");
@@ -97,6 +98,6 @@ public abstract class Fraccao {
         System.out.println("Id Proprietario :"+this.getProprietario().getIdentificador());
         System.out.println("Nome Proprietario :"+this.getProprietario().getNome());
         System.out.println("Email Proprietario :"+this.getProprietario().getEmail());
-        
+        System.out.println("-----------------------------------------------------------------------------");
     }
 }

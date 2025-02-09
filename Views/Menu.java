@@ -22,7 +22,7 @@ public class Menu {
     }
 
     public static void menuCondominio() {
-        System.out.println(" Menu Condomínio ");
+        System.out.println("--------------------------  Serviços Disponíveis ---------------------------------- ");
         System.out.println(" 1 - Ver e Alterar a Despesa Geral e do Elevador  ");
         System.out.println(" 2 - Calcular a soma das Quotais Mensais ");
         System.out.println(" 3 - Listar as fraccoes que compoem o condominio ");
@@ -32,15 +32,9 @@ public class Menu {
         System.out.println(" 7 - Verificar as somas das fraccoes ");
         System.out.println(" 0 - Sair ");
         System.out.println("Digite a opcção que deseja :");
+        System.out.println("------------------------------------------------------------------------------------");
     }
-    public static void menuFraccao(){
-        System.out.println(" Menu Fraccao ");
-        System.out.println("1 - Inserir Fraccao ");
-        System.out.println("2 - Remover Fraccao ");
-        System.out.println("3 - Verificar as somas das fraccoes ");
-        System.out.println(" 0 - Sair ");
-        System.out.println("Digite a opcção que deseja :");
-    }
+   
     public static void menuTipoFraccao(){
         System.out.println(" 1 - Apartamento ");
         System.out.println(" 2 -  Garagens ");

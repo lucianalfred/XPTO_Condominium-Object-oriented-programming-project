@@ -232,16 +232,35 @@ public class PrincipalCondominio {
                 }
                 Garagem garagem = new Garagem(numViaturas,lavagem,areaFraccao,localizacao,proprietarioExistente,condominio);
                 if (condominio.adicionarFraccao(garagem)) {
-                    System.out.println("Fração foi inserida com sucesso!");
+                    System.out.println("Garagem  foi inserida com sucesso!");
                 } else {
-                    System.out.println("Fraçãoa não foi inserida, verifica se tem espaaço disponivel!");
+                    System.out.println("Garagem  não foi inserida, verifica se tem espaaço disponivel!");
                 }
                 break;
             case 3:
                 System.out.println(" 3 - Arrecadação ");
+                System.out.println("Possui porta blindada? Sim -1, não - 0");
+                int blindada = input.nextInt();
+                boolean portaBlindada = true ;
+                if ( blindada == 0){
+                    portaBlindada = false ;
+                }
+                
+                Arrecadacao arrecadacao = new Arrecadacao (portaBlindada, areaFraccao,localizacao,proprietarioExistente,condominio );
+                if (condominio.adicionarFraccao(arrecadacao)) {
+                    System.out.println("Arrecadação foi inserida com sucesso!");
+                } else {
+                    System.out.println("Arrecadação não foi inserida, verifica se tem espaaço disponivel!");
+                }
                 break;
             case 4:
                 System.out.println(" 4 - Loja ");
+                Loja loja = new Loja (areaFraccao,localizacao,proprietarioExistente,condominio );
+                if (condominio.adicionarFraccao(loja)) {
+                    System.out.println("Loja foi inserida com sucesso!");
+                } else {
+                    System.out.println("Loja não foi inserida, verifica se tem espaaço disponivel!");
+                }
                 break;
             default:
                 break;
