@@ -125,13 +125,22 @@ public class PrincipalCondominio {
             System.out.print("Digite despesas geral: ");
             String despesasGeraisInput = input.next();
             despesasGeraisInput = despesasGeraisInput.replace(",", ".");
+
             double despesasGerais = Double.parseDouble(despesasGeraisInput);
+            if (despesasGerais <0){
+                System.out.println(" Não Digite valores negativos para Despesa Geral  ");
+                return ;
+            }
             condominio.setTotalDispesasGerais(despesasGerais);
 
             System.out.print("Digite despesas elevador: ");
             String despesasElevadorInput = input.next();
             despesasElevadorInput = despesasElevadorInput.replace(",", ".");
             double despesasElevador = Double.parseDouble(despesasElevadorInput);
+            if (despesasElevador  <0){
+                System.out.println(" Não Digite valores negativos para Despesa do Elevador  ");
+                return ;
+            }
             condominio.setTotalDespesaElevador(despesasElevador);
         } catch (NumberFormatException e) {
             System.out.println("Erro: Entrada inválida. Certifique-se de usar vírgula ou ponto como separador decimal.");
@@ -212,7 +221,7 @@ public class PrincipalCondominio {
                 if (temTerraco == 0) {
                     terraco = false;
                 }
-                Apartamento apartamento = new Apartamento(tipoApartamento,numBanheiro, numVaranda, terraco, areaFraccao, localizacao, proprietarioExistente,condominio);
+                Apartamento apartamento = new Apartamento(tipoApartamento, numBanheiro, numVaranda, terraco, areaFraccao, localizacao, proprietarioExistente, condominio);
                 if (condominio.adicionarFraccao(apartamento)) {
                     System.out.println("Fraçãoa foi inserida com sucesso!");
                 } else {
@@ -230,7 +239,7 @@ public class PrincipalCondominio {
                 if (possuiLavagem == 0) {
                     lavagem = false;
                 }
-                Garagem garagem = new Garagem(numViaturas,lavagem,areaFraccao,localizacao,proprietarioExistente,condominio);
+                Garagem garagem = new Garagem(numViaturas, lavagem, areaFraccao, localizacao, proprietarioExistente, condominio);
                 if (condominio.adicionarFraccao(garagem)) {
                     System.out.println("Garagem  foi inserida com sucesso!");
                 } else {
@@ -241,12 +250,11 @@ public class PrincipalCondominio {
                 System.out.println(" 3 - Arrecadação ");
                 System.out.println("Possui porta blindada? Sim -1, não - 0");
                 int blindada = input.nextInt();
-                boolean portaBlindada = true ;
-                if ( blindada == 0){
-                    portaBlindada = false ;
+                boolean portaBlindada = true;
+                if (blindada == 0) {
+                    portaBlindada = false;
                 }
-                
-                Arrecadacao arrecadacao = new Arrecadacao (portaBlindada, areaFraccao,localizacao,proprietarioExistente,condominio );
+                Arrecadacao arrecadacao = new Arrecadacao(portaBlindada, areaFraccao, localizacao, proprietarioExistente, condominio);
                 if (condominio.adicionarFraccao(arrecadacao)) {
                     System.out.println("Arrecadação foi inserida com sucesso!");
                 } else {
@@ -255,7 +263,7 @@ public class PrincipalCondominio {
                 break;
             case 4:
                 System.out.println(" 4 - Loja ");
-                Loja loja = new Loja (areaFraccao,localizacao,proprietarioExistente,condominio );
+                Loja loja = new Loja(areaFraccao, localizacao, proprietarioExistente, condominio);
                 if (condominio.adicionarFraccao(loja)) {
                     System.out.println("Loja foi inserida com sucesso!");
                 } else {

@@ -113,28 +113,31 @@ public class Condominio {
         if (fraccoes.size() == 0) {
             System.out.println(" Não Há Fraccoes No Condominio");
         } else {
-            System.out.println("--------------------------------------------------------------");
+
             for (Fraccao aux : fraccoes) {
                 aux.mostarInformacoes();
             }
-            
+
         }
     }
-    public boolean removerFraccao(Fraccao frac){
+
+    public boolean removerFraccao(Fraccao frac) {
         return fraccoes.remove(frac);
     }
-    public void verificarSomasDasPercentagens(){
+
+    public void verificarSomasDasPercentagens() {
         double soma = 0;
         if (fraccoes.size() != 0) {
             for (Fraccao aux : fraccoes) {
                 soma += aux.percentagemArea;
             }
-            System.out.println("Percentagem das Frações: "+soma+"%");
-        }else{
+            System.out.println("Percentagem das Frações: " + soma + "%");
+        } else {
             System.out.println("Não há frações!");
         }
-        
+
     }
+
     public double calcularQuotasMensais() {
         double somaQuota = 0;
         if (fraccoes.size() != 0) {
@@ -179,7 +182,7 @@ public class Condominio {
         System.out.println("Area Total: " + areaTotal);
         System.out.println("Area Ocupada: " + areaOcupada);
         System.out.println("Area Disponivel: " + areaDisponivel);
-        System.out.println("Percentagem Disponivel: " + ((areaDisponivel * 100)/areaTotal)+"%");
+        System.out.println("Percentagem Disponivel: " + ((areaDisponivel * 100) / areaTotal) + "%");
         System.out.println("_________________________________________________");
 
     }
