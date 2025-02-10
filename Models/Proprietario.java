@@ -37,7 +37,6 @@ public class Proprietario {
        
     }
     
-    
     @Override
     public String toString(){
         return identificador+","+nome+","+morada+","+telefone+","+email+","+dataNascimento;

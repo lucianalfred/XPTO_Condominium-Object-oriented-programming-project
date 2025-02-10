@@ -18,6 +18,17 @@ public class Arrecadacao extends Fraccao {
     public void setPossuiPortaBlindada(boolean possuiPortaBlindada) {
         this.possuiPortaBlindada = possuiPortaBlindada;
     }
+    @Override
+    public double calcularQuotaMensal(double despesasGerais, double despesasElevadores) {
+        return calcularPercentagemArea(cond.getAreaTotal()) * (despesasGerais + despesasElevadores);
+    }
+    @Override
+    public void mostarInformacoes() {
+        super.mostarInformacoes();
+        System.out.println("Possui Porta Blindada :" + this.possuiPortaBlindada);
+        System.out.println(" Quota Mensal da Arrecadação :"+this.calcularQuotaMensal(cond.getTotalDispesasGerais(), cond.getTotalDespesaElevador()));
+        
+    }
 
     //outros metodos
 }

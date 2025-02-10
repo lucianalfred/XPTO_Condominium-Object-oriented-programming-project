@@ -35,6 +35,19 @@ public class Garagem extends Fraccao {
     public void setPossuiServicoLavagem(boolean possuiServicoLavagem) {
         this.possuiServicoLavagem = possuiServicoLavagem;
     }
+    @Override
+    public double calcularQuotaMensal(double despesasGerais, double despesasElevadores) {
+        return calcularPercentagemArea(cond.getAreaTotal()) * (despesasGerais + despesasElevadores);
+    }
+
+     @Override
+    public void mostarInformacoes() {
+        super.mostarInformacoes();
+        System.out.println("Capacidade de Viaturas :" + this.capacidadeViaturas);
+        System.out.println("Possui Serviço de Lavgem  :" + this.possuiServicoLavagem);
+        System.out.println(" Quota Mensal da Gragem :"+this.calcularQuotaMensal(cond.getTotalDispesasGerais(), cond.getTotalDespesaElevador()));
+        
+    }
     
     //outros metodos
     

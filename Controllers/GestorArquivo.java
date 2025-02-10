@@ -196,8 +196,8 @@ public class GestorArquivo {
                         int numCasasBanho = Integer.parseInt(dados[6]);
                         int numVarandas = Integer.parseInt(dados[7]);
                         boolean possuiTerraco = Boolean.parseBoolean(dados[8]);
-                        Apartamento apartamento = new Apartamento(tipoApartamento, numCasasBanho, numVarandas, possuiTerraco, area, localizacao, proprietario,condominio);
-                        condominio.adicionarFraccao(apartamento);
+//                        Apartamento apartamento = new Apartamento(tipoApartamento, numCasasBanho, numVarandas, possuiTerraco, area, localizacao, proprietario,condominio);
+                     //   condominio.adicionarFraccao(apartamento);
                     }
                 }
             }

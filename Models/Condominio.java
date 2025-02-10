@@ -33,7 +33,6 @@ public class Condominio {
     public Condominio() {
 
     }
-
     //get and set
     public int getIdentifcador() {
         return identifcador;
@@ -142,7 +141,12 @@ public class Condominio {
         double somaQuota = 0;
         if (fraccoes.size() != 0) {
             for (Fraccao aux : fraccoes) {
-                somaQuota += aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador, areaTotal);
+                if(aux instanceof Loja){
+                    somaQuota += ((Loja) aux).calcularQuotaMensal(totalDispesasGerais);
+                }else{
+                    somaQuota += aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador);
+            
+                }
             }
         }
         return somaQuota;
@@ -182,8 +186,9 @@ public class Condominio {
         System.out.println("Area Total: " + areaTotal);
         System.out.println("Area Ocupada: " + areaOcupada);
         System.out.println("Area Disponivel: " + areaDisponivel);
-        System.out.println("Percentagem Disponivel: " + ((areaDisponivel * 100) / areaTotal) + "%");
+        System.out.println("Percentagem Disponivel: " +  String.format("%.3f", ((areaDisponivel * 100) / areaTotal)) +"%");
         System.out.println("_________________________________________________");
+        
 
     }
 }
