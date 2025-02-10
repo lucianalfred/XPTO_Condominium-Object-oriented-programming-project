@@ -15,13 +15,14 @@ public class Proprietario {
 
     //Constructor
     public Proprietario(String nome, String morada, String telefone, String email, LocalDate dataNascimento) {
-        this.identificador = ++contador;
+        this.identificador += ++contador;
         this.nome = nome;
         this.morada = morada;
         this.telefone = telefone;
         this.email = email;
         this.dataNascimento = dataNascimento;
     }
+    
     
     public Proprietario(int identificador, String nome, String email) {
         this.identificador = identificador;
@@ -37,10 +38,7 @@ public class Proprietario {
        
     }
     
-    @Override
-    public String toString(){
-        return identificador+","+nome+","+morada+","+telefone+","+email+","+dataNascimento;
-    }
+    
 
     //Setters and Getters
     public int getIdentificador() {
@@ -91,5 +89,16 @@ public class Proprietario {
         this.dataNascimento = dataNascimento;
     }
 
-    // outros metodos 
+    // outros metodos
+    
+    public void mostrarInformacao(){
+        System.out.println("Identificador: "+identificador);
+        System.out.println("Nome: "+nome);
+        System.out.println("Email: "+email);
+    }
+    
+    @Override
+    public String toString(){
+        return identificador+","+nome+","+email+","+morada+","+telefone+","+","+dataNascimento;
+    }
 }

@@ -1,5 +1,6 @@
 package Main;
 
+import Arquivo.GestorArquivo;
 import Controllers.*;
 import Models.*;
 import Views.*;
@@ -9,8 +10,10 @@ import java.util.*;
 
 public class PrincipalCondominio {
 
-    private static Scanner input = new Scanner(System.in);
+    private static final Scanner input = new Scanner(System.in);
     private static Condominio condominio;
+    private static ArrayList<Proprietario> proprietarios;
+    private static ArrayList<Usuario> usuarios;
 
     public static void main(String[] args) {
         try {
@@ -27,19 +30,22 @@ public class PrincipalCondominio {
         String dataConstrucao = "11-11-2001";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate data = LocalDate.parse(dataConstrucao, formatter);
-        condominio = new Condominio(25000, "Luanda, Talatona", 1500, 500, data);
 
-        Proprietario luciano = new Proprietario("Luciano", "luciano@gmail.com");
-        TipoApartamento escolher = TipoApartamento.T3;
-        TipoApartamento escolher1 = TipoApartamento.T4;
-        Apartamento ap = new Apartamento(escolher, 2, 2, false, 45, "Luanda", luciano, condominio);
-        Apartamento ap2 = new Apartamento(escolher1, 2, 2, false, 45, "Luanda", luciano, condominio);
-        condominio.adicionarFraccao(ap);
-        condominio.adicionarFraccao(ap2);
+        condominio = new Condominio();
+
+        GestorArquivo.carregarDadosDoCondominio(condominio);
+        proprietarios = GestorArquivo.carregarProprietarios();
+        GestorArquivo.carregarFraccoes(condominio);
+    }
+
+    public static void sair() {
+        GestorArquivo.guardarFracoes(condominio);
+        GestorArquivo.guardarProprietarios(proprietarios);
+        System.out.println("Saindo do programa...");
     }
 
     public static void verificarSomaDasFraccoes() {
-        System.out.println(" 7 - Verificar as somas das fraccoes ");
+        System.out.println("7 - Verificar as somas das frações");
         condominio.verificarSomasDasPercentagens();
     }
 
@@ -70,6 +76,7 @@ public class PrincipalCondominio {
                     break;
                 case 0:
                     System.out.println("Encerrando o programa...");
+                    sair();
                     flagMenuPrincipal = false;
                     break;
                 default:
@@ -87,7 +94,6 @@ public class PrincipalCondominio {
             switch (opcaoCondominio) {
                 case 1:
                     alterarDespesas();
-
                     break;
                 case 2:
                     calcularQuotasMensais();
@@ -96,7 +102,6 @@ public class PrincipalCondominio {
                     listarFracoes();
                     break;
                 case 4:
-
                     alterarDadosCondominio();
                     break;
                 case 5:
@@ -107,6 +112,15 @@ public class PrincipalCondominio {
                     break;
                 case 7:
                     verificarSomaDasFraccoes();
+                    break;
+                case 8:
+                    listarProprietarios();
+                    break;
+                case 9:
+                    cadastrarNovoProprietario();
+                    break;
+                case 10:
+                    info();
                     break;
                 case 0:
                     System.out.println("Saindo do menu do condomínio...");
@@ -124,28 +138,25 @@ public class PrincipalCondominio {
         condominio.mostrarInformacao();
 
         try {
-            System.out.print("Altere a  Despesa Geral :");
-            String despesasGeraisInput = input.next();
-            despesasGeraisInput = despesasGeraisInput.replace(",", ".");
-
+            System.out.print("Altere a Despesa Geral: ");
+            String despesasGeraisInput = input.next().replace(",", ".");
             double despesasGerais = Double.parseDouble(despesasGeraisInput);
             if (despesasGerais <= 0) {
-                System.out.println(" Não Digite valores negativos para Despesa Geral  ");
+                System.out.println("Não digite valores negativos para Despesa Geral.");
                 return;
             }
             condominio.setTotalDispesasGerais(despesasGerais);
 
-            System.out.print("Altere a Despesas Elevador :");
-            String despesasElevadorInput = input.next();
-            despesasElevadorInput = despesasElevadorInput.replace(",", ".");
+            System.out.print("Altere a Despesa do Elevador: ");
+            String despesasElevadorInput = input.next().replace(",", ".");
             double despesasElevador = Double.parseDouble(despesasElevadorInput);
             if (despesasElevador <= 0) {
-                System.out.println(" Não Digite valores negativos para Despesa do Elevador  ");
+                System.out.println("Não digite valores negativos para Despesa do Elevador.");
                 return;
             }
             condominio.setTotalDespesaElevador(despesasElevador);
         } catch (NumberFormatException e) {
-            System.out.println(" Entrada Inválida. Certifique-se de usar vírgula ou ponto como separador decimal.");
+            System.out.println("Entrada inválida. Certifique-se de usar vírgula ou ponto como separador decimal.");
         }
     }
 
@@ -156,7 +167,7 @@ public class PrincipalCondominio {
     }
 
     private static void listarFracoes() {
-        System.out.println("3 - Listar as fracções do condomínio");
+        System.out.println("3 - Listar as frações do condomínio");
         condominio.listarFraccao();
     }
 
@@ -166,227 +177,229 @@ public class PrincipalCondominio {
 
         double area;
         do {
-            System.out.print("Digite a  área Total: ");
+            System.out.print("Digite a área Total: ");
             area = input.nextDouble();
             if (area <= 0) {
-                System.out.println("Digite um Valor Positivo para área Total ou Numero Diferente que Zero  ");
+                System.out.println("Digite um valor positivo para área Total.");
             }
             condominio.setAreaTotal(area);
         } while (area <= 0);
+
         double despesasGerais;
         do {
-            System.out.print("Digite a Despesas Geral: ");
+            System.out.print("Digite a Despesa Geral: ");
             despesasGerais = input.nextDouble();
             condominio.setTotalDispesasGerais(despesasGerais);
         } while (despesasGerais <= 0);
 
         double despesasElevador;
         do {
-            System.out.print("Digite  a Despesas Elevador: ");
+            System.out.print("Digite a Despesa do Elevador: ");
             despesasElevador = input.nextDouble();
             condominio.setTotalDespesaElevador(despesasElevador);
         } while (despesasElevador <= 0);
     }
 
+    private static void info() {
+        condominio.mostrarInformacao();
+    }
+
     private static void inserirFracao() {
-        System.out.println("5 - Inserir Fracção");
+        System.out.println("5 - Inserir Fração");
         double areaFraccao;
         do {
-            System.out.print("Digite a área da Fracção: ");
+            System.out.print("Digite a área da Fração: ");
             areaFraccao = input.nextDouble();
             if (areaFraccao <= 0) {
-                System.out.println(" Digite Um Valor Positivo para Área da Fracção ou  Numero Diferente que Zero ");
+                System.out.println("Digite um valor positivo para a área da Fração.");
             }
         } while (areaFraccao <= 0);
 
         System.out.print("Localização: ");
         String localizacao = input.next();
         input.nextLine();
+
         Proprietario proprietarioExistente = null;
-        System.out.println("O proprietário já possui alguma fracção do condomínio?! 1-Sim / 0-Não");
+        System.out.println("O proprietário já possui alguma fração do condomínio? 1-Sim / 0-Não");
         int temProprietario = input.nextInt();
         if (temProprietario == 1) {
-            System.out.print("Digite o Id do Proprietário: ");
+            System.out.print("Digite o ID do Proprietário: ");
             int idProprietario = input.nextInt();
             proprietarioExistente = condominio.procurarProprietario(idProprietario);
         }
         if (proprietarioExistente == null) {
             proprietarioExistente = cadastrarNovoProprietario();
         }
-        //Escolher diferente tipo de fraccoes
+
         Menu.menuTipoFraccao();
         int opTipoFraccao = input.nextInt();
         switch (opTipoFraccao) {
-            case 0:
-                System.out.println(" Sair ");
-
-                break;
             case 1:
-                System.out.println(" 1 - Apartamento ");
-                int tipoApartamento;
-
-                System.out.println(" Tipo de Apartamento :");
-                System.out.println("0 - T0");
-                System.out.println("1 - T1");
-                System.out.println("2 - T2");
-                System.out.println("3 - T3");
-                System.out.println("4 - T4");
-                System.out.println("5 - T5");
-                System.out.print(" Digite o Tipo apartamento :");
-                tipoApartamento = input.nextInt();
-                TipoApartamento escolhidoApartamento = null;
-                switch (tipoApartamento) {
-                    case 0:
-                        escolhidoApartamento = TipoApartamento.T0;
-                        break;
-                    case 1:
-                        escolhidoApartamento = TipoApartamento.T1;
-                        break;
-                    case 2:
-                        escolhidoApartamento = TipoApartamento.T2;
-                        break;
-                    case 3:
-                        escolhidoApartamento = TipoApartamento.T3;
-                        break;
-                    case 4:
-                        escolhidoApartamento = TipoApartamento.T4;
-                        break;
-                    case 5:
-                        escolhidoApartamento = TipoApartamento.T5;
-                        break;
-
-                }
-                int numBanheiro,
-                 numVaranda;
-                do {
-                    System.out.print("Numero de Casas De Banho :");
-                    numBanheiro = input.nextInt();
-                    if (numBanheiro < 0) {
-                        System.out.println(" Digite Um Valor Positivo para o  Numero de Casas De Banho ");
-                    }
-                } while (numBanheiro < 0);
-                do {
-                    System.out.print("Numero Varandas :");
-                    numVaranda = input.nextInt();
-                    if (numVaranda < 0) {
-                        System.out.println(" Digite Um Valor Positivo para o Numero Varandas  ");
-                    }
-                } while (numVaranda < 0);
-
-                System.out.print("Tem terraço ? sim-1/ não - 0");
-                int temTerraco = input.nextInt();
-                boolean terraco = true;
-                if (temTerraco == 0) {
-                    terraco = false;
-                }
-                Apartamento apartamento = new Apartamento(escolhidoApartamento, numBanheiro, numVaranda, terraco, areaFraccao, localizacao, proprietarioExistente, condominio);
-                if (condominio.adicionarFraccao(apartamento)) {
-                    System.out.println("Fraçãoa foi inserida com sucesso!");
-                } else {
-                    System.out.println("Fraçãoa não foi inserida, verifica se tem espaaço disponivel!");
-                }
-
+                inserirApartamento(areaFraccao, localizacao, proprietarioExistente);
                 break;
             case 2:
-                System.out.println(" 2 - Garagens ");
-                int numViaturas;
-                do {
-                    System.out.println("Digite o Numero de Viatuaras :");
-                    numViaturas = input.nextInt();
-                    if (numViaturas < 0) {
-                        System.out.println(" Digite Um Valor Positivo para o  Numero de Viatuaras   ");
-                    }
-                } while (numViaturas < 0);
-
-                System.out.println("Possui Serviço de Lavegem ?! 1-Sim / 0-Não ");
-                int possuiLavagem = input.nextInt();
-                boolean lavagem = true;
-                if (possuiLavagem == 0) {
-                    lavagem = false;
-                }
-                Garagem garagem = new Garagem(numViaturas, lavagem, areaFraccao, localizacao, proprietarioExistente, condominio);
-                if (condominio.adicionarFraccao(garagem)) {
-                    System.out.println("Garagem  foi inserida com sucesso!");
-                } else {
-                    System.out.println("Garagem  não foi inserida, verifica se tem espaaço disponivel!");
-                }
+                inserirGaragem(areaFraccao, localizacao, proprietarioExistente);
                 break;
             case 3:
-                System.out.println(" 3 - Arrecadação ");
-                System.out.println("Possui porta blindada? Sim -1, não - 0");
-                int blindada = input.nextInt();
-                boolean portaBlindada = true;
-                if (blindada == 0) {
-                    portaBlindada = false;
-                }
-                Arrecadacao arrecadacao = new Arrecadacao(portaBlindada, areaFraccao, localizacao, proprietarioExistente, condominio);
-                if (condominio.adicionarFraccao(arrecadacao)) {
-                    System.out.println("Arrecadação foi inserida com sucesso!");
-                } else {
-                    System.out.println("Arrecadação não foi inserida, verifica se tem espaaço disponivel!");
-                }
+                inserirArrecadacao(areaFraccao, localizacao, proprietarioExistente);
                 break;
             case 4:
-                System.out.println(" 4 - Loja ");
-                Loja loja = new Loja(areaFraccao, localizacao, proprietarioExistente, condominio);
-                if (condominio.adicionarFraccao(loja)) {
-                    System.out.println("Loja foi inserida com sucesso!");
-                } else {
-                    System.out.println("Loja não foi inserida, verifica se tem espaaço disponivel!");
-                }
+                inserirLoja(areaFraccao, localizacao, proprietarioExistente);
                 break;
             default:
+                System.out.println("Opção inválida.");
                 break;
         }
+    }
 
+    private static void inserirApartamento(double areaFraccao, String localizacao, Proprietario proprietario) {
+        System.out.println("1 - Apartamento");
+        System.out.println("Tipo de Apartamento:");
+        System.out.println("T0");
+        System.out.println("T1");
+        System.out.println("T2");
+        System.out.println("T3");
+        System.out.println("T4");
+        System.out.println("T5");
+        System.out.print("Digite o Tipo de Apartamento: ");
+        String tipoApartamento = input.next().toUpperCase();
+
+        int numBanheiro, numVaranda;
+        do {
+            System.out.print("Número de Casas de Banho: ");
+            numBanheiro = input.nextInt();
+            if (numBanheiro < 0) {
+                System.out.println("Digite um valor positivo para o número de Casas de Banho.");
+            }
+        } while (numBanheiro < 0);
+
+        do {
+            System.out.print("Número de Varandas: ");
+            numVaranda = input.nextInt();
+            if (numVaranda < 0) {
+                System.out.println("Digite um valor positivo para o número de Varandas.");
+            }
+        } while (numVaranda < 0);
+
+        System.out.print("Tem terraço? 1-Sim / 0-Não: ");
+        boolean terraco = input.nextInt() == 1;
+
+        Apartamento apartamento = new Apartamento(tipoApartamento, numBanheiro, numVaranda, terraco, areaFraccao, localizacao, proprietario, condominio);
+        apartamento.setIdentificador(condominio.getFraccoes().size());
+        if (condominio.adicionarFraccao(apartamento)) {
+            System.out.println("Fração inserida com sucesso!");
+            condominio.adicionarFraccao(apartamento);
+            GestorArquivo.guardarFraccao(apartamento);
+        } else {
+            System.out.println("Fração não foi inserida. Verifique se há espaço disponível.");
+        }
+        
+    }
+
+    private static void inserirGaragem(double areaFraccao, String localizacao, Proprietario proprietario) {
+        System.out.println("2 - Garagem");
+        int numViaturas;
+        do {
+            System.out.print("Número de Viaturas: ");
+            numViaturas = input.nextInt();
+            if (numViaturas < 0) {
+                System.out.println("Digite um valor positivo para o número de Viaturas.");
+            }
+        } while (numViaturas < 0);
+
+        System.out.print("Possui Serviço de Lavagem? 1-Sim / 0-Não: ");
+        boolean lavagem = input.nextInt() == 1;
+
+        Garagem garagem = new Garagem(numViaturas, lavagem, areaFraccao, localizacao, proprietario, condominio);
+        if (condominio.adicionarFraccao(garagem)) {
+            System.out.println("Garagem inserida com sucesso!");
+            condominio.adicionarFraccao(garagem);
+            GestorArquivo.guardarFraccao(garagem);
+        } else {
+            System.out.println("Garagem não foi inserida. Verifique se há espaço disponível.");
+        }
+    }
+
+    private static void inserirArrecadacao(double areaFraccao, String localizacao, Proprietario proprietario) {
+        System.out.println("3 - Arrecadação");
+        System.out.print("Possui porta blindada? 1-Sim / 0-Não: ");
+        boolean portaBlindada = input.nextInt() == 1;
+
+        Arrecadacao arrecadacao = new Arrecadacao(portaBlindada, areaFraccao, localizacao, proprietario, condominio);
+        if (condominio.adicionarFraccao(arrecadacao)) {
+            condominio.adicionarFraccao(arrecadacao);
+            GestorArquivo.guardarFraccao(arrecadacao);
+            System.out.println("Arrecadação inserida com sucesso!");
+        } else {
+            System.out.println("Arrecadação não foi inserida. Verifique se há espaço disponível.");
+        }
+    }
+
+    private static void inserirLoja(double areaFraccao, String localizacao, Proprietario proprietario) {
+        System.out.println("4 - Loja");
+        Loja loja = new Loja(areaFraccao, localizacao, proprietario, condominio);
+        if (condominio.adicionarFraccao(loja)) {
+            System.out.println("Loja inserida com sucesso!");
+            condominio.adicionarFraccao(loja);
+            GestorArquivo.guardarFraccao(loja);
+        } else {
+            System.out.println("Loja não foi inserida. Verifique se há espaço disponível.");
+        }
     }
 
     public static void removerFraccao() {
-        System.out.println("Digite o id da Fração: ");
+        System.out.println("Digite o ID da Fração: ");
         int idFraccao = input.nextInt();
-        boolean removeu = false;
-        for (Fraccao frac : condominio.getFraccoes()) {
-            if (frac.getIdentificador() == idFraccao) {
-                if (condominio.removerFraccao(frac)) {
-                    removeu = true;
-                }
-            }
-        }
-        if (removeu) {
-            System.out.println("Fraçao removida com sucesso");
+
+        Optional<Fraccao> fraccaoParaRemover = condominio.getFraccoes().stream()
+                .filter(frac -> frac.getIdentificador() == idFraccao)
+                .findFirst();
+
+        if (fraccaoParaRemover.isPresent()) {
+            condominio.removerFraccao(fraccaoParaRemover.get());
+            System.out.println("Fração removida com sucesso.");
         } else {
-            System.out.println("Fraçao não foi removida, verifica se foi inserida!");
+            System.out.println("Fração não encontrada. Verifique se o ID está correto.");
+        }
+    }
+
+    public static void listarProprietarios() {
+        for (Proprietario proprietario : proprietarios) {
+            System.out.println("-----------------------------");
+            proprietario.mostrarInformacao();
+            System.out.println("-----------------------------");
         }
     }
 
     private static Proprietario cadastrarNovoProprietario() {
-        System.out.println(" Cadastre um novo proprietário...");
+        System.out.println("Cadastre um novo proprietário...");
         System.out.print("Nome: ");
         String nome = input.next();
         System.out.print("Morada: ");
         String morada = input.next();
-        String telefone, emailProprietario;
+
+        String telefone;
         do {
             System.out.print("Telefone: ");
             telefone = input.next();
-            if (Login.validarTelefone(telefone) == false) {
-                System.out.println(" Digite um numero de telefone com 9 Digitos e Inicie com 9  ");
+            if (!Login.validarTelefone(telefone)) {
+                System.out.println("Digite um número de telefone com 9 dígitos e inicie com 9.");
             }
-        } while (Login.validarTelefone(telefone) == false);
-        /* do {
-            System.out.print("Email: ");
-            emailProprietario = input.next();
-            if ((Login.validarEmail(emailProprietario) == false)) {
-                System.out.println(" Digite um email Válido ");
-            }
-        } while (Login.validarEmail(emailProprietario) == false);
-         */
+        } while (!Login.validarTelefone(telefone));
+
         System.out.print("Email: ");
-        emailProprietario = input.next();
+        String emailProprietario = input.next();
+
         System.out.print("Data de nascimento do Proprietário (dd-MM-yyyy): ");
         String dataNascimento = input.next();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate dataN = LocalDate.parse(dataNascimento, formatter);
-        return new Proprietario(nome, morada, telefone, emailProprietario, dataN);
+
+        Proprietario proprietario = new Proprietario(nome, morada, telefone, emailProprietario, dataN);
+        proprietario.setIdentificador(proprietarios.size());
+        proprietarios.add(proprietario);
+        GestorArquivo.guardarProprietario(proprietario);
+
+        return proprietario;
     }
 }

@@ -2,14 +2,14 @@ package Models;
 
 public class Apartamento extends Fraccao {
 
-    protected TipoApartamento tipoApartamento;
+    protected String tipoApartamento;
     protected int numCasasBanho;
     protected int numVarandas;
     protected boolean possuiTerraco;
 
     //constructor
 
-    public Apartamento(TipoApartamento tipoApartamento, int numCasasBanho, int numVarandas, boolean possuiTerraco, double area, String localizacao, Proprietario proprietario, Condominio cond) {
+    public Apartamento(String tipoApartamento, int numCasasBanho, int numVarandas, boolean possuiTerraco, double area, String localizacao, Proprietario proprietario, Condominio cond) {
         super(area, localizacao, proprietario, cond);
         this.tipoApartamento = tipoApartamento;
         this.numCasasBanho = numCasasBanho;
@@ -18,17 +18,13 @@ public class Apartamento extends Fraccao {
     }
     
 
-    @Override
-    public String toString() {
-        return super.toString() + "," + tipoApartamento + "," + numCasasBanho + "," + numVarandas + "," + possuiTerraco;
-    }
-
+   
     //getters and setters
-    public TipoApartamento getTipoApartamento() {
+    public String getTipoApartamento() {
         return tipoApartamento;
     }
 
-    public void setTipoApartamento(TipoApartamento tipoApartamento) {
+    public void setTipoApartamento(String tipoApartamento) {
         this.tipoApartamento = tipoApartamento;
     }
 
@@ -59,13 +55,20 @@ public class Apartamento extends Fraccao {
     //outros metodos
     @Override
     public void mostarInformacoes() {
+        System.out.println("__________________________________________________________________________");
+        System.out.println("APARTAMENTO");
         super.mostarInformacoes();
-        System.out.println("Tipo Apartamento :" + this.getTipoApartamento());
+        System.out.println("Tipo Apartamento : " + this.getTipoApartamento());
         System.out.println("Numero de Casas de Banho :" + this.getNumCasasBanho());
         System.out.println("Numero de Varandas :" + this.getNumVarandas());
-        System.out.println("Possui Terraço :" + this.isPossuiTerraco());
-        System.out.println(" Quota Mensal do Apartamento:"+ this.calcularQuotaMensal(cond.getTotalDispesasGerais(), cond.getTotalDespesaElevador()));
-        
+        System.out.println("Possui Terraço : " + (this.isPossuiTerraco() ? "Possui": "Nao possui"));
+        System.out.println("Quota Mensal do Apartamento: "+ this.calcularQuotaMensal(cond.getTotalDispesasGerais(), cond.getTotalDespesaElevador()));
+        System.out.println("__________________________________________________________________________");
+    }
+     @Override
+    public String toString() {
+      
+        return super.toString() + "," + tipoApartamento + "," + numCasasBanho + "," + numVarandas + "," + possuiTerraco;
     }
 
 }

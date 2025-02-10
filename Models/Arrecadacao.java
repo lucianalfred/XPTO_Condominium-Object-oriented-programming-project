@@ -24,9 +24,13 @@ public class Arrecadacao extends Fraccao {
     }
     @Override
     public void mostarInformacoes() {
+       
+        System.out.println("__________________________________________________________________________");
+        System.out.println("ARRECADACAO");
         super.mostarInformacoes();
-        System.out.println("Possui Porta Blindada :" + this.possuiPortaBlindada);
-        System.out.println(" Quota Mensal da Arrecadação :"+this.calcularQuotaMensal(cond.getTotalDispesasGerais(), cond.getTotalDespesaElevador()));
+        System.out.println("Possui Porta Blindada :" + ((this.possuiPortaBlindada) ? "Possui": "Nao possui"));
+        System.out.println("Quota Mensal da Arrecadação :"+this.calcularQuotaMensal(cond.getTotalDispesasGerais(), cond.getTotalDespesaElevador()));
+        System.out.println("__________________________________________________________________________");
         
     }
 

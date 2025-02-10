@@ -20,8 +20,11 @@ public class Loja extends Fraccao {
     }
      @Override
     public void mostarInformacoes() {
+        System.out.println("__________________________________________________________________________");
+        System.out.println("LOJA");
         super.mostarInformacoes();
-        System.out.println(" Quota Mensal da Loja :"+this.calcularQuotaMensal(cond.getTotalDispesasGerais()));
+        System.out.println("Quota Mensal da Loja :"+this.calcularQuotaMensal(cond.getTotalDispesasGerais()));
+        System.out.println("__________________________________________________________________________");
         
     }
     

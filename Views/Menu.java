@@ -31,6 +31,9 @@ public class Menu {
         System.out.println(" 5 - Inserir Fraccao ");
         System.out.println(" 6 - Remover Fraccao ");
         System.out.println(" 7 - Verificar as somas das fraccoes ");
+        System.out.println(" 8 - Listar Proprietarios");
+        System.out.println(" 9 - Adicionar Proprietario");
+        System.out.println(" 10- Info");
         System.out.println(" 0 - Sair ");
         System.out.println("Digite a opcção que deseja :");
         System.out.println("______________________________________________________________________________________");

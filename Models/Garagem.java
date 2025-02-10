@@ -42,10 +42,13 @@ public class Garagem extends Fraccao {
 
      @Override
     public void mostarInformacoes() {
+        System.out.println("__________________________________________________________________________");
+        System.out.println("GARAGEM");
         super.mostarInformacoes();
         System.out.println("Capacidade de Viaturas :" + this.capacidadeViaturas);
-        System.out.println("Possui Serviço de Lavgem  :" + this.possuiServicoLavagem);
-        System.out.println(" Quota Mensal da Gragem :"+this.calcularQuotaMensal(cond.getTotalDispesasGerais(), cond.getTotalDespesaElevador()));
+        System.out.println("Possui Serviço de Lavgem  :" + (this.possuiServicoLavagem ? "Possui": "Nao possui"));
+        System.out.println("Quota Mensal da Gragem :"+this.calcularQuotaMensal(cond.getTotalDispesasGerais(), cond.getTotalDespesaElevador()));
+        System.out.println("__________________________________________________________________________");
         
     }
     
