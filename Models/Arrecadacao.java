@@ -18,10 +18,12 @@ public class Arrecadacao extends Fraccao {
     public void setPossuiPortaBlindada(boolean possuiPortaBlindada) {
         this.possuiPortaBlindada = possuiPortaBlindada;
     }
+    //metodo para calcular Quota Mensal da Arrecadação
     @Override
     public double calcularQuotaMensal(double despesasGerais, double despesasElevadores) {
         return calcularPercentagemArea(cond.getAreaTotal()) * (despesasGerais + despesasElevadores);
     }
+     //metodo para Imprimir Informações da Arrecadação
     @Override
     public void mostarInformacoes() {
         super.mostarInformacoes();
@@ -30,5 +32,5 @@ public class Arrecadacao extends Fraccao {
         
     }
 
-    //outros metodos
+    
 }

@@ -31,8 +31,8 @@ public class Condominio {
     }
 
     public Condominio() {
-
     }
+    
     //get and set
     public int getIdentifcador() {
         return identifcador;
@@ -105,8 +105,8 @@ public class Condominio {
     public void setTotalDespesaElevador(double totalDespesaElevador) {
         this.totalDespesaElevador = totalDespesaElevador;
     }
-    //
-
+    
+    // metodo para listar fracções
     public void listarFraccao() {
         // this.fraccoes = new Arra
         if (fraccoes.size() == 0) {
@@ -119,33 +119,33 @@ public class Condominio {
 
         }
     }
-
+     // metodo para remover fracções
     public boolean removerFraccao(Fraccao frac) {
         return fraccoes.remove(frac);
     }
-
+    // metodo para verificar Soma das percentagens das fracções
     public void verificarSomasDasPercentagens() {
         double soma = 0;
         if (fraccoes.size() != 0) {
             for (Fraccao aux : fraccoes) {
                 soma += aux.percentagemArea;
             }
-            System.out.println("Percentagem das Frações: " + soma + "%");
+            System.out.println("Percentagem das Frações: " + String.format("%.3f", soma) + "%");
         } else {
             System.out.println("Não há frações!");
         }
 
     }
-
+    //metodo para  calcular Quotas Mensaisde todas as fracções
     public double calcularQuotasMensais() {
         double somaQuota = 0;
         if (fraccoes.size() != 0) {
             for (Fraccao aux : fraccoes) {
-                if(aux instanceof Loja){
+                if (aux instanceof Loja) {
                     somaQuota += ((Loja) aux).calcularQuotaMensal(totalDispesasGerais);
-                }else{
+                } else {
                     somaQuota += aux.calcularQuotaMensal(totalDispesasGerais, totalDespesaElevador);
-            
+
                 }
             }
         }
@@ -156,7 +156,7 @@ public class Condominio {
     public String toString() {
         return identifcador + "," + morada + "," + totalDispesasGerais + "," + totalDespesaElevador + "," + dataConstrucao + "" + "," + areaTotal + "," + areaOcupada + "," + areaDisponivel;
     }
-
+    // metodo para verificar se tem area disponivel para adicinar fracção
     public boolean adicionarFraccao(Fraccao fraccao) {
         if (fraccao.area <= this.areaDisponivel) {
             fraccoes.add(fraccao);
@@ -166,7 +166,7 @@ public class Condominio {
         }
         return false;
     }
-
+    // metodo para prcocuar Id do Proprietario
     public Proprietario procurarProprietario(int id) {
         for (Fraccao aux : fraccoes) {
             if (aux.proprietario.getIdentificador() == id) {
@@ -175,7 +175,7 @@ public class Condominio {
         }
         return null;
     }
-
+     //metodo para Imprimir Informações do Condominio
     public void mostrarInformacao() {
         System.out.println("_________________________________________________");
         System.out.println("Condominio: XPTO");
@@ -186,9 +186,8 @@ public class Condominio {
         System.out.println("Area Total: " + areaTotal);
         System.out.println("Area Ocupada: " + areaOcupada);
         System.out.println("Area Disponivel: " + areaDisponivel);
-        System.out.println("Percentagem Disponivel: " +  String.format("%.3f", ((areaDisponivel * 100) / areaTotal)) +"%");
+        System.out.println("Percentagem Disponivel: " + String.format("%.3f", ((areaDisponivel * 100) / areaTotal)) + "%");
         System.out.println("_________________________________________________");
-        
 
     }
 }

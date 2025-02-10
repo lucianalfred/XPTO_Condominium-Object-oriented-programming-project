@@ -1,22 +1,23 @@
 package Models;
 
-
 public class Usuario {
-    
+
     private String nome;
     private String email;
     private String password;
 
+    // constructor
     public Usuario(String nome, String email, String password) {
         this.nome = nome;
         this.email = email;
         this.password = password;
     }
 
-    @Override 
-    public String toString(){
-        return nome+","+email+","+password;
+    @Override
+    public String toString() {
+        return nome + "," + email + "," + password;
     }
+
     public String getNome() {
         return nome;
     }
@@ -40,6 +41,5 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
 }

@@ -91,5 +91,5 @@ public class Proprietario {
         this.dataNascimento = dataNascimento;
     }
 
-    // outros metodos 
+   
 }

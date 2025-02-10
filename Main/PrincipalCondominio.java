@@ -12,6 +12,7 @@ public class PrincipalCondominio {
     private static Scanner input = new Scanner(System.in);
     private static Condominio condominio;
 
+    // Main 
     public static void main(String[] args) {
         try {
             inicializarCondominio();
@@ -23,6 +24,7 @@ public class PrincipalCondominio {
         }
     }
 
+    // Metodo para inicializar um Condominio para testes
     private static void inicializarCondominio() {
         String dataConstrucao = "11-11-2001";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -37,12 +39,14 @@ public class PrincipalCondominio {
         condominio.adicionarFraccao(ap);
         condominio.adicionarFraccao(ap2);
     }
-
+    
+    // Metdodo para verificar a soma das  %  das fracções 
     public static void verificarSomaDasFraccoes() {
         System.out.println(" 7 - Verificar as somas das fraccoes ");
         condominio.verificarSomasDasPercentagens();
     }
 
+    //Metedo para Login
     private static void executarPrograma() {
         boolean flag = true;
         do {
@@ -59,6 +63,7 @@ public class PrincipalCondominio {
         } while (flag);
     }
 
+    //Metdod que permite acessar ao Xpto
     private static void gerenciarMenuPrincipal() {
         boolean flagMenuPrincipal = true;
         do {
@@ -79,7 +84,8 @@ public class PrincipalCondominio {
         } while (flagMenuPrincipal);
     }
 
-    private static void gerenciarMenuCondominio() {
+    // Metodo que permite acessar os Serviços do Condominio
+    private static void  gerenciarMenuCondominio() {
         boolean flagCondominio = true;
         do {
             Menu.menuCondominio();
@@ -87,7 +93,6 @@ public class PrincipalCondominio {
             switch (opcaoCondominio) {
                 case 1:
                     alterarDespesas();
-
                     break;
                 case 2:
                     calcularQuotasMensais();
@@ -96,7 +101,6 @@ public class PrincipalCondominio {
                     listarFracoes();
                     break;
                 case 4:
-
                     alterarDadosCondominio();
                     break;
                 case 5:
@@ -118,7 +122,7 @@ public class PrincipalCondominio {
             }
         } while (flagCondominio);
     }
-
+    // Metodo para ver dados do Condominio e alterar as Despesas
     private static void alterarDespesas() {
         System.out.println("1 - Ver e Alterar a Despesa Geral e do Elevador");
         condominio.mostrarInformacao();
@@ -148,18 +152,18 @@ public class PrincipalCondominio {
             System.out.println(" Entrada Inválida. Certifique-se de usar vírgula ou ponto como separador decimal.");
         }
     }
-
+    // metodo para calcular o somatorio de todas as quotas mensais 
     private static void calcularQuotasMensais() {
         System.out.println("2 - Calcular a soma das Quotas Mensais");
         double quotaMensal = condominio.calcularQuotasMensais();
         System.out.println("Quota mensal: " + quotaMensal);
     }
-
+    //metodo para listar fracções do Condominio 
     private static void listarFracoes() {
         System.out.println("3 - Listar as fracções do condomínio");
         condominio.listarFraccao();
     }
-
+    // Metedo para altearar dados con condominio como : areaTotal , Despesa Geral e do Elevador 
     private static void alterarDadosCondominio() {
         System.out.println("4 - Alterar Dados do Condomínio");
         condominio.mostrarInformacao();
@@ -187,7 +191,7 @@ public class PrincipalCondominio {
             condominio.setTotalDespesaElevador(despesasElevador);
         } while (despesasElevador <= 0);
     }
-
+    //Metodo para Registar Fracção 
     private static void inserirFracao() {
         System.out.println("5 - Inserir Fracção");
         double areaFraccao;
@@ -340,7 +344,7 @@ public class PrincipalCondominio {
         }
 
     }
-
+    // metodo para remover facção atraves do Id
     public static void removerFraccao() {
         System.out.println("Digite o id da Fração: ");
         int idFraccao = input.nextInt();
@@ -358,7 +362,7 @@ public class PrincipalCondominio {
             System.out.println("Fraçao não foi removida, verifica se foi inserida!");
         }
     }
-
+    // metodo para cadastrar um propreitario novo 
     private static Proprietario cadastrarNovoProprietario() {
         System.out.println(" Cadastre um novo proprietário...");
         System.out.print("Nome: ");

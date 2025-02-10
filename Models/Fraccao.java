@@ -66,24 +66,6 @@ public abstract class Fraccao {
         return identificador + "," + area + "," + percentagemArea + "," + localizacao + "," + proprietario.getIdentificador();
     }
 
-    //metodo que calcula a percentagem da area da fraccao em relacao a areaa total do condominio 
-    public double calcularPercentagemArea(double areaTotalCondominio) {
-       double percentagem = (this.area * 100) / areaTotalCondominio;
-        //DecimalFormat df = new DecimalFormat("#.###");
-        this.percentagemArea = (this.area * 100) / areaTotalCondominio;;
-        return percentagem ;
-       
-    }
-
-    public void mostrarPercentagem(Condominio cond) {
-        DecimalFormat df = new DecimalFormat("#.###");
-        System.out.println("Percentagem: " + df.format(calcularPercentagemArea(cond.getAreaTotal())));
-    }
-
-    public double calcularQuotaMensal(double despesasGerais, double despesasElevadores) {
-        return calcularPercentagemArea(cond.getAreaTotal()) * (despesasGerais + despesasElevadores);
-    }
-
     public double getPercentagemArea() {
         return percentagemArea;
     }
@@ -91,16 +73,36 @@ public abstract class Fraccao {
     public void setPercentagemArea(double percentagemArea) {
         this.percentagemArea = percentagemArea;
     }
+    
+    //metodo que calcula a percentagem da area da fraccao em relacao a areaa total do condominio 
+    public double calcularPercentagemArea(double areaTotalCondominio) {
+        double percentagem = (this.area * 100) / areaTotalCondominio;
+        //DecimalFormat df = new DecimalFormat("#.###");
+        this.percentagemArea = (this.area * 100) / areaTotalCondominio;
+        return percentagem;
 
+    }
+
+    // metodo para mostar percentagem com 3 casas decimais 
+    public void mostrarPercentagem(Condominio cond) {
+        DecimalFormat df = new DecimalFormat("#.###");
+        System.out.println("Percentagem: " + df.format(calcularPercentagemArea(cond.getAreaTotal())));
+    }
+
+    //metodod para calcular quota mensal 
+    public double calcularQuotaMensal(double despesasGerais, double despesasElevadores) {
+        return calcularPercentagemArea(cond.getAreaTotal()) * (despesasGerais + despesasElevadores);
+    }
+    
+    //metodo para Imprimir Informações da Fracção
     public void mostarInformacoes() {
-      
         System.out.println("Id :" + this.getIdentificador());
         System.out.println("Area:" + this.getArea());
-        System.out.println("Percentagem da Area :" +String.format("%.3f", this.percentagemArea)  + "%");
+        System.out.println("Percentagem da Area :" + String.format("%.3f", this.percentagemArea) + "%");
         System.out.println("Localização :" + this.getLocalizacao());
         System.out.println("Id Proprietario :" + this.getProprietario().getIdentificador());
         System.out.println("Nome Proprietario :" + this.getProprietario().getNome());
         System.out.println("Email Proprietario :" + this.getProprietario().getEmail());
-        
+
     }
 }

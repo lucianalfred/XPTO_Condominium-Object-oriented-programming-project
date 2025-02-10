@@ -35,11 +35,12 @@ public class Garagem extends Fraccao {
     public void setPossuiServicoLavagem(boolean possuiServicoLavagem) {
         this.possuiServicoLavagem = possuiServicoLavagem;
     }
+    // metodo para calcular quota mensal da Garagem 
     @Override
     public double calcularQuotaMensal(double despesasGerais, double despesasElevadores) {
         return calcularPercentagemArea(cond.getAreaTotal()) * (despesasGerais + despesasElevadores);
     }
-
+    // metodo para Imprimir Informações da Garagem
      @Override
     public void mostarInformacoes() {
         super.mostarInformacoes();

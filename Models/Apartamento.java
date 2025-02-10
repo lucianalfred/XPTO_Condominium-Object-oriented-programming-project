@@ -17,7 +17,6 @@ public class Apartamento extends Fraccao {
         this.possuiTerraco = possuiTerraco;
     }
     
-
     @Override
     public String toString() {
         return super.toString() + "," + tipoApartamento + "," + numCasasBanho + "," + numVarandas + "," + possuiTerraco;
@@ -56,7 +55,7 @@ public class Apartamento extends Fraccao {
         this.possuiTerraco = possuiTerraco;
     }
 
-    //outros metodos
+    //metodo para Imprimir Informações do Apartamento
     @Override
     public void mostarInformacoes() {
         super.mostarInformacoes();
