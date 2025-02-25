@@ -331,7 +331,7 @@ public class GestorArquivo {
                     }
                     break;
                 case "garagem":
-                    if (dados.length == 8) {
+                    if (dados.length == 6) {
                         int capacidade = Integer.parseInt(dados[6]);
                         boolean lavagem = Boolean.parseBoolean(dados[7]);
                         novaFraccao = new Garagem(capacidade, lavagem, area, localizacao, proprietario, condominio);
